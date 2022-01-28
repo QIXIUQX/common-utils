@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../jquery-1.11.0.min.js"></script>
+	<script src="../1920screen_self-adaption.js"></script>
+	<title>Document</title>
+	<link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+<div class="btn">12312</div>
+<div class="dialog-mark">
+	<div class="dialog-wrapper">
+		<div class="dialog-header">提示</div>
+		<div class="dialog-content-wrapper">
+			<div class="dialog-content">提示文字</div>
+			<div class="dialog-footer">
+				<button class="common-btn btn-default btn-cancel">取消</button>
+				<button class="common-btn btn-success btn-check">提交</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	"use strict";
+	
+	var dialogMark = $(".dialog-mark");
+	$(".btn").on("click", function () {
+		showDialogBox("测试内容");
+	});
+	
+	handleCancelBtnClick();
+	
+	function handleCancelBtnClick(callback) {
+		$(".btn-cancel").on("click", function () {
+			if (callback instanceof Function) callback();
+			dialogMark.toggle();
+		});
+	}
+	
+	handleCheckBtnClick();
+	
+	function handleCheckBtnClick(tipStr, callback) {
+		$(".btn-check").on("click", function () {
+			if (callback instanceof Function) callback();
+			dialogMark.toggle();
+		});
+	}
+	
+	function showDialogBox(tipStr) {
+		$(".dialog-content").text(tipStr);
+		dialogMark.toggle();
+	}
+
+</script>
+</body>
+
+</html>

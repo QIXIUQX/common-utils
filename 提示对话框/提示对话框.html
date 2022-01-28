@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../1920screen_self-adaption.js"></script>
+	<title>Document</title>
+	<script src="../jquery-1.11.0.min.js"></script>
+	<style lang="">
+		.common-tips-box-mask {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+		
+		.common-tips-box-mask .common-tips-box {
+			position: absolute;
+			left: 50%;
+			top:30%;
+			transform: translate(-50%,-30%);
+			width: 90%;
+			height: max-content;
+			border-radius: 0.15rem;
+			overflow: hidden;
+			background-color: #fff;
+		}
+		
+		.common-tips-box-mask .common-tips-box .common-tips-header {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 1rem;
+			background-color: #8cbf0a;
+			color: #fff;
+			font-size: 0.44rem;
+			text-align: center;
+		}
+		
+		.common-tips-box-mask .common-tips-box .common-tips-content {
+			padding: 0.45rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 2rem;
+			height: max-content;
+			color: #333333;
+			font-size: 0.36rem;
+			line-height: .80rem;
+		}
+		
+		.common-tips-box-mask .common-tips-box .common-tips-footer {
+			padding: 0.45rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.common-tips-box-mask .common-tips-box .common-tips-footer .common-tips-check {
+			width: 2.4rem;
+			background-color: #8cbf0a;
+			color: #fff;
+			outline: none;
+			border: none;
+			font-size: 0.4rem;
+			border-radius: .1rem;
+		}
+	</style>
+</head>
+
+<body>
+<div class="test">12123123</div>
+<div class="common-tips-box-mask">
+	<div class="common-tips-box">
+		<div class="common-tips-header">提示</div>
+		<div class="common-tips-content">提示内容</div>
+		<div class="common-tips-footer">
+			<button class="common-tips-check">确定</button>
+		</div>
+	</div>
+</div>
+</body>
+
+<script>
+	$(".test").click(function () {
+		showTipsBox("自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容自定义提示内容", function(){
+			console.log('对话框弹出对话框弹出');
+		}, function (){
+			console.log('确定按钮被点击');
+		})
+	})
+	
+	/**
+	 * 显示对提示对话框
+	 * @param {String} massage 需要显示在对话框中的提示内容
+	 * @param {Function} callback 在对话框被弹出时候需要被执行的回调
+	 * @param {Function} checkCallback 在对话框确定按钮点击需要被执行的回调
+	 */
+	function showTipsBox(massage, callback, checkCallback) {
+		if (massage === "") {
+			massage = "提示内容"
+		}
+		$(".common-tips-box-mask")
+				.show()
+				.find(".common-tips-content")
+				.text(massage);
+		if (callback instanceof Function) callback();
+		hideTipBox(checkCallback)
+	}
+	
+	/**
+	 * 提示对话框隐藏
+	 * @param {Function} callback  在对话框确定按钮点击需要被执行的回调
+	 */
+	function hideTipBox(callback) {
+		$(".common-tips-check").off().on("click", function () { //先删除所有事件在添加事件
+			if (callback instanceof Function) callback();
+			$(this).parents(".common-tips-box-mask").hide();
+		});
+	}
+</script>
+
+</html>

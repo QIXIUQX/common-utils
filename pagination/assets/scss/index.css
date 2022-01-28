@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.m-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.14rem;
+  color: #333;
+  user-select: none; }
+  .m-pagination .m-p-ipt {
+    padding: 0.06rem 0.08rem;
+    width: 0.42rem;
+    height: 0.28rem;
+    font-size: 0.12rem;
+    color: #B2B2B2;
+    border: 0.01rem solid #D5D5D5;
+    border-radius: 0.04rem;
+    outline: none; }
+    .m-pagination .m-p-ipt::placeholder {
+      font-size: 0.12rem; }
+  .m-pagination .m-p-go {
+    margin-left: 0.09rem;
+    color: #2582FC; }
+  .m-pagination .m-p-prev, .m-pagination .m-p-next {
+    margin-left: 0.19rem; }
+    .m-pagination .m-p-prev svg, .m-pagination .m-p-next svg {
+      width: 0.16rem;
+      height: 0.2rem; }
+  .m-pagination .page-num {
+    padding: 0 0.05rem;
+    height: 0.2rem;
+    min-width: 0.2rem;
+    text-align: center;
+    font-size: 0.24rem; }
+  .m-pagination .current-page {
+    background-color: #FA851C;
+    border-radius: 0.19rem;
+    color: #fff;
+    font-size: 0.14rem; }
+  .m-pagination .m-pagination-item {
+    font-size: 0.14rem;
+    margin-left: 0.13rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; }
+
+/*# sourceMappingURL=index.css.map */

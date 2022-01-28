@@ -1,0 +1,112 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+.common-btn {
+	padding: 0.13rem 1rem;
+	display: inline-block;
+	-webkit-appearance: none;
+	line-height: 1;
+	white-space: nowrap;
+	background: #fff;
+	border: 0.01rem solid #dcdfe6;
+	color: #606266;
+	text-align: center;
+	box-sizing: border-box;
+	outline: none;
+	margin: 0;
+	transition: 0.1s;
+	font-weight: 500;
+	font-size: 0.4rem;
+	border-radius: 0.1rem;
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.btn-default:hover {
+	color: #409eff;
+	border-color: #c6e2ff;
+	background-color: #ecf5ff;
+}
+
+.btn-default:active {
+	color: #3a8ee6;
+	border-color: #3a8ee6;
+	outline: none;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #409eff;
+	border-color: #409eff;
+}
+
+.btn-primary:active {
+	background: #3a8ee6;
+	border-color: #3a8ee6;
+	color: #fff;
+}
+
+.btn-success {
+	color: #fff;
+	background-color: #67c23a;
+	border-color: #67c23a;
+}
+
+.btn-success:active {
+	background: #5daf34;
+	border-color: #5daf34;
+	color: #fff;
+}
+
+.dialog-mark {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.3);
+	.dialog-wrapper {
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		transform: translate(-50%, -30%);
+		border-radius: 0.04rem;
+		overflow: hidden;
+		width: 90%;
+		.dialog-header {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 1rem;
+			width: 100%;
+			background-color: #8cbf0a;
+			font-size: 0.44rem;
+			color: #fff;
+		}
+		.dialog-content-wrapper {
+			background-color: #fff;
+
+			.dialog-content {
+				padding: 0.78rem 0.78rem 0.94rem 0.78rem;
+				text-align: center;
+				width: 100%;
+				font-size: 0.36rem;
+			}
+			.dialog-footer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding-bottom: 0.48rem;
+				& > button:nth-child(2) {
+					margin-left: 1.42rem;
+				}
+			}
+		}
+	}
+}

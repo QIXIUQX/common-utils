@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--禁止移动端缩放-->
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=0, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<!--优先使用webkit内核渲染-->
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#div1 {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			left: 50px;
+			top: 100px;
+		}
+	</style>
+</head>
+
+<body>
+<div id="div1"></div>
+
+<script>
+	
+	//2，开始拖拽
+	var modalBox = document.getElementById("div1");
+	modalBox.addEventListener("mousedown", function (e) {  //鼠标按下的时候，得到鼠标在盒子里面的坐标
+		var x = e.pageX - modalBox.offsetLeft;
+		var y = e.pageY - modalBox.offsetTop;
+		document.addEventListener("mousemove", move);  //鼠标移动的时候，得到模态框的坐标
+		function move(e) {
+			modalBox.style.left = e.pageX - x + "px";
+			modalBox.style.top = e.pageY - y + "px";
+		}
+		
+		document.addEventListener("mouseup", function () {  //鼠标弹起的时候，解除鼠标移动事件
+			document.removeEventListener("mousemove", move);
+		})
+	})
+	
+	
+	// var
+	
+	// modalBox.addEventListener("mousedown", function (e) {
+	//     var offsetX = e.pageY - modalBox.offsetTop     //鼠标距离盒子上面距离
+	//     var offsetY = e.pageX - modalBox.offsetLeft   //鼠标距离盒子左侧位置
+	//     document.addEventListener("mousemove", move)
+	//     function move(e) {
+	//         modalBox.style.left = e.pageX - offsetY + 'px'
+	//         modalBox.style.top = e.pageY - offsetX + 'px'
+	//     }
+	//     document.addEventListener("mouseup", function () {
+	//         console.log('1231231');
+	
+	//     })
+	// })
+	// modalBox.addEventListener("mouseup", function () {
+	//     console.log('1231231');
+	
+	// })
+	
+	// modalBox.onmousedown = function (e) {
+	//     var eto = e.pageY - modalBox.offsetTop     //鼠标距离盒子上面距离
+	//     var ele = e.pageX - modalBox.offsetLeft   //鼠标距离盒子左侧位置
+	//     document.onmousemove = function (e) {
+	//         modalBox.style.left = e.pageX - ele + 'px'
+	//         modalBox.style.top = e.pageY - eto + 'px'
+	//     }
+	// }
+	// modalBox.onmouseup = function () {
+	//     document.onmousemove = null
+	// }
+
+</script>
+</body>
+
+</html>

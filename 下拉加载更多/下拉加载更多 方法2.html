@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!--禁止移动端缩放-->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	<!--优先使用webkit内核渲染-->
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.0/dist/jquery.min.js"></script>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		#header {
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 50px;
+			background: #FAA732;
+			text-align: center;
+			line-height: 50px;
+			color: white;
+			font-weight: bold;
+		}
+		
+		#main {
+			position: absolute;
+			top: 50px;
+			left: 0px;
+			right: 0px;
+			bottom: 51px;
+			padding: 10px;
+			overflow: auto;
+		}
+		
+		#main li {
+			display: flex;
+			margin-bottom: 10px;
+			padding: 10px;
+			border-bottom: 1px solid gray;
+			border-radius: 4px;
+			background: #EEE;
+		}
+		
+		#main li img {
+			flex: 50px 0 0;
+			width: 50px;
+			height: 50px;
+			padding: 4px;
+			border: 1px solid green;
+		}
+		
+		#main li span {
+			padding-left: 4px;
+			line-height: 24px;
+		}
+		
+		#footer {
+			display: flex;
+			position: fixed;
+			left: 0px;
+			bottom: 0px;
+			width: 100%;
+			height: 50px;
+			border-top: 1px solid gray;
+			background: #FAA732;
+		}
+		
+		#footer div {
+			flex: 1;
+			text-align: center;
+			line-height: 50px;
+			color: white;
+			font-weight: bold;
+			border-right: 1px solid white;
+		}
+		
+		#footer div:nth-child(4) {
+			border: none;
+		}
+		
+		#footer .active {
+			background: #0086FF;
+		}
+	
+	</style>
+	<title>Document</title>
+</head>
+<body>
+<header id="header">首 页</header>
+
+<section id="main">
+	<ul id="list_box"></ul>
+</section>
+
+<footer id="footer">
+	<div class="active">首页</div>
+	<div>商城</div>
+	<div>其他</div>
+	<div>我的</div>
+</footer>
+
+<script>
+	var page = 1, //分页码
+			off_on = false, //分页开关(滚动加载方法 1 中用的)
+			timers = null; //定时器(滚动加载方法 2 中用的)
+	
+	//加载数据
+	var LoadingDataFn = function () {
+		var dom = '';
+		for (var i = 0; i < 20; i++) {
+			dom += '<li><img src="http://www.jq22.com/img/cs/500x500a.png"/><span>上滑列加载表内容上滑列加载表内容上滑列加载表内容上滑列加载表内容</span></li>';
+		}
+		$('#list_box').append(dom);
+		off_on = true; //[重要]这是使用了 {滚动加载方法1}  时 用到的 ！！！[如果用  滚动加载方法1 时：off_on 在这里不设 true的话， 下次就没法加载了哦！]
+	};
+	
+	//初始化， 第一次加载
+	$(document).ready(function () {
+		LoadingDataFn();
+	});
+	
+	//底部切换
+	$(document.body).on('click', '#footer div', function () {
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+	
+	//滚动加载方法1
+	$('#main').scroll(function () {
+		//当时滚动条离底部60px时开始加载下一页的内容
+		if (($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight) {
+			//这里用 [ off_on ] 来控制是否加载 （这样就解决了 当上页的条件满足时，一下子加载多次的问题啦）
+			if (off_on) {
+				//off_on = false;
+				//page++;
+				//console.log("第"+page+"页");
+				//LoadingDataFn();  //调用执行上面的加载方法
+			}
+		}
+	});
+	
+	//滚动加载方法2
+	$('#main').scroll(function () {
+		//当时滚动条离底部60px时开始加载下一页的内容
+		if (($(this)[0].scrollTop + $(this).height() + 60) >= $(this)[0].scrollHeight) {
+			clearTimeout(timers);
+			//这里还可以用 [ 延时执行 ] 来控制是否加载 （这样就解决了 当上页的条件满足时，一下子加载多次的问题啦）
+			timers = setTimeout(function () {
+				page++;
+				console.log("第" + page + "页");
+				LoadingDataFn(); //调用执行上面的加载方法
+			}, 300);
+		}
+	});
+	
+	//还可以基window窗口（body）来添加滚动事件, (因为布局不同,所以在这里没效果，因为[上面是基于body中的某个元素来添加滚动事的])
+	$(window).scroll(function () {
+		//当时滚动条离底部60px时开始加载下一页的内容
+		if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+			clearTimeout(timers);
+			timers = setTimeout(function () {
+				page++;
+				console.log("第" + page + "页");
+				LoadingDataFn();
+			}, 300);
+		}
+	});
+</script>
+</body>
+</html>

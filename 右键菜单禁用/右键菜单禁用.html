@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script>
+
+
+
+        /**
+             * 禁用右键菜单
+        //      */
+        document.oncontextmenu = function () {
+            event.returnValue = false;
+        };
+        /**
+         * 禁用选中功能
+         */
+        // document.onselectstart = function () {
+        //     event.returnValue = false;
+        // };
+        /**
+         * 禁用复制功能
+         */
+        // document.oncopy = function () {
+        //     event.returnValue = false;
+        // };
+        /**
+         * 禁用鼠标的左右键
+         * @param {Object} e
+         */
+        // document.onmousedown = function () {
+        //     if (event.which == 1) {//鼠标左键
+        //         return false;
+        //     }
+
+        //     if (event.which == 3) {//鼠标右键
+        //         return false;
+        //     }
+        // };
+
+        // /**
+        //  * 获取键盘上的输入值
+        //  */
+        // document.onkeydown = function () {
+        //     console.info(event.which);
+        //     if (event.which == 13) {
+        //         console.info("回车键");
+        //     }
+        // };
+    </script>
+    <style>
+        div {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>12312312</div>
+
+</body>
+
+</html>

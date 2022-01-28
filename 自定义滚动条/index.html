@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	
+	<meta charset="UTF-8">
+	<title>滚动条示例</title>
+	<style>
+		*::-webkit-scrollbar {
+			width: 6px;
+			height: 1px;
+			border-radius: 6px;
+			background-color: rgba(87,186,232,.1);
+		}
+		
+		/*正常情况下滑块的样式*/
+		*::-webkit-scrollbar-thumb {
+			background-color: rgba(87,186,232,0.5);
+			border-radius:10px;
+		}
+		
+		/*鼠标悬浮在该类指向的控件上时滑块的样式*/
+		*:hover::-webkit-scrollbar-thumb {
+		}
+		
+		/*鼠标悬浮在滑块上时滑块的样式*/
+		*::-webkit-scrollbar-thumb:hover {
+		
+		}
+		
+		/*正常时候的主干部分*/
+		*::-webkit-scrollbar-track {
+		
+		}
+		
+		/*鼠标悬浮在滚动条上的主干部分*/
+		*::-webkit-scrollbar-track:hover {
+		
+		}
+		
+		.box {
+			height: 200px;
+			width: 300px;
+			overflow: hidden;
+		}
+		
+		.box:hover {
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+<div style="" class="box">
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	123<br/>
+	<!--这里有好多上面这结构为了节省篇幅就省去了-->
+</div>
+</body>
+</html>

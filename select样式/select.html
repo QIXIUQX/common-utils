@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>selector</title>
+	<script src="../jquery-1.11.0.min.js"></script>
+	<style>
+		#selector {
+			max-width: 500px;
+			margin: 100px auto;
+			padding: 20px;
+		}
+		
+		.ul {
+			display: none;
+			list-style: none;
+			margin: -2px 0 0;
+			padding: 5px 0;
+			border: 1px solid #313b94;
+			border-top: 0;
+		}
+		
+		.ul li {
+			display: block;
+			padding: 2px 5px;
+			color: #000;
+			text-decoration: none;
+		}
+		
+		.ul li:hover {
+			background-color: rgba(243, 229, 229, 0.678);
+			color: #000;
+		}
+		
+		#selected {
+			position: relative;
+			border: 1px solid #313b94;
+			display: -webkit-flex;
+			justify-content: space-between;
+			height: 30px;
+			line-height: 30px;
+			padding: 0 1px;
+		}
+		
+		#arrowBotton {
+			border-left: 1px solid #313b94
+		}
+		
+		#arrowBotton > img {
+			height: 100%;;
+		}
+	
+	</style>
+</head>
+<body>
+<select name="" id="">
+	<option value="">123</option>
+	<option value="">123</option>
+	<option value="">123</option>
+</select>
+<div id="selector">
+	<div id="selected">
+		<span id="sex" value="">请选择</span>
+		<div id="arrowBotton"><img src="./images/arrow_bot.png"></div>
+	</div>
+	<ul class="ul">
+		<li value="man">男</li>
+		<li value="woman">女</li>
+	</ul>
+</div>
+<script>
+	(function ($) {
+		$(document).ready(function () {
+			$("#selected").on("click",function () {
+				$(".ul").show();
+			});
+			$("#selector, .ul").mouseleave(function (e) {
+				console.log(e.target)
+				$(".ul").hide();
+			});
+		});
+		
+		$(".ul li").on("click",function () {
+			$("#sex").html($(this).html())
+					.attr("value", $(this).attr("value"));
+			
+			$(".ul").css("display", "none");
+		})
+		
+	})(jQuery)
+
+</script>
+</body>
+</html>
+

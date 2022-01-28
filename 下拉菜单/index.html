@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		ul, ol, li {
+			list-style: none
+		}
+		
+		.nav-menu-list {
+			display: flex;
+		}
+		
+		.nav-menu-item {
+			padding: 10px 30px;
+			background-color: pink;
+		}
+		
+		.current-menu-item {
+			color: deepskyblue;
+		}
+		
+		.has-children {
+			position: relative;
+		}
+		
+		.default-arrow::after {
+			content: "jiantou"
+		}
+		
+		.has-children:hover >.sub-menu-list {
+			display: block;
+			top: 100%;
+		}
+		
+		.sub-menu-list {
+			position: absolute;
+			left: 0;
+			top: 150%;
+			right: 0;
+			display: none;
+			/*padding: 10px;*/
+			transition:all 0.5s ease-in-out;
+		}
+		
+		.sub-menu-item {
+			padding: 5px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<ul class="nav-menu-list">
+		<li class="nav-menu-item"><a href="javascript:void(0)" class="menu-item current-menu-item">菜单1</a></li>
+		<li class="nav-menu-item"><a href="javascript:void(0)" class="menu-item ">菜单2</a></li>
+		<li class="nav-menu-item"><a href="javascript:void(0)" class="menu-item ">菜单3</a></li>
+		<li class="nav-menu-item has-children">
+			<a href="javascript:void(0)" class="menu-item default-arrow">有子菜单</a>
+			<ul class="sub-menu-list">
+				<li class="sub-menu-item">子菜单1</li>
+				<li class="sub-menu-item">子菜单1</li>
+				<li class="sub-menu-item">子菜单1</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

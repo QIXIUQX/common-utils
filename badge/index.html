@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		body{
+			padding:100px 200px;
+		}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		.x-badge {
+			position: relative;
+			margin-right: 30px;
+			display: inline-block;
+			vertical-align: middle;
+			user-select: none;
+			cursor: pointer;
+		}
+		
+		.x-badge-btn {
+			padding: 8px 15px;
+			outline: none;
+			border: 1px solid #dcdfe6;
+			border-radius: 3px;
+			background-color: #fff;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			
+		}
+		.x-badge-btn:hover{
+			background-color: #ecf5ff;
+			border-color: #e3f1ff;
+		}
+		.x-badge-btn:active{
+			border-color: #3a8ee6;
+		}
+		.is-fixed{
+			position: absolute;
+			top: 0;
+			right: 10px;
+			transform: translateY(-50%) translateX(100%);
+		}
+		.x-badge_content{
+			background-color: #f56c6c;
+			border-radius: 10px;
+			color: #fff;
+			display: inline-block;
+			font-size: 12px;
+			padding: 2px 6px;
+			text-align: center;
+			white-space: nowrap;
+			border: 1px solid #fff;
+		}
+	</style>
+</head>
+<body>
+<div class="x-badge">
+	<button class="x-badge-btn">
+		<span class="x-badge-txt">评论</span>
+	</button>
+	<span class="x-badge_content is-fixed">99+</span>
+</div>
+</body>
+</html>
