@@ -18,7 +18,7 @@ let commonUtils = {}
  * @returns {*|string}
  */
 commonUtils.fillWith0 = function (number) {
-    return number >= 10 ? number : "0" + number
+	return number >= 10 ? number : "0" + number
 }
 
 /**
@@ -27,13 +27,13 @@ commonUtils.fillWith0 = function (number) {
  * @returns {*[]}   返回一个新的数组
  */
 commonUtils.messArray = function (array) {
-    let _after = [];
-    let index = 0
-    for (let i = array.length - 1; i >= 0; i--) {
-        index = commonUtils.randomNum(0, i);
-        _after[_after.length] = array.splice(index, 1)[0];
-    }
-    return _after;
+	let _after = [];
+	let index = 0
+	for (let i = array.length - 1; i >= 0; i--) {
+		index = commonUtils.randomNum(0, i);
+		_after[_after.length] = array.splice(index, 1)[0];
+	}
+	return _after;
 }
 
 /**
@@ -43,7 +43,7 @@ commonUtils.messArray = function (array) {
  * @returns {number} 返回随机值
  */
 commonUtils.randomNum = function (minNum, maxNum) {
-    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+	return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
 }
 
 /**
@@ -54,37 +54,37 @@ commonUtils.randomNum = function (minNum, maxNum) {
  * @returns 如果防抖函数有返回值则通过res 返回
  */
 commonUtils.debounce = function (fn, delay, trigger = false) {
-    let t = null;
-    let res = null;
-    let debounced = function () {
-        let _self = this;
-        let args = arguments;
-        if (t) {
-            clearTimeout(t);
-        }
-        if (trigger) {
-            let exec = !t;
+	let t = null;
+	let res = null;
+	let debounced = function () {
+		let _self = this;
+		let args = arguments;
+		if (t) {
+			clearTimeout(t);
+		}
+		if (trigger) {
+			let exec = !t;
 
-            t = setTimeout(() => {
-                t = null;
-            }, delay);
+			t = setTimeout(() => {
+				t = null;
+			}, delay);
 
-            if (exec) {
-                res = fn.apply(_self, args);
-            }
-        } else {
-            t = setTimeout(() => {
-                res = fn.apply(_self, args);
-            }, delay);
-        }
-        return res;
-    };
-    debounced.remove = function () {
-        clearTimeout(t);
-        t = null;
-    };
+			if (exec) {
+				res = fn.apply(_self, args);
+			}
+		} else {
+			t = setTimeout(() => {
+				res = fn.apply(_self, args);
+			}, delay);
+		}
+		return res;
+	};
+	debounced.remove = function () {
+		clearTimeout(t);
+		t = null;
+	};
 
-    return debounced;
+	return debounced;
 }
 
 /**
@@ -93,24 +93,24 @@ commonUtils.debounce = function (fn, delay, trigger = false) {
  * @param {*} delay  延迟时间
  */
 commonUtils.throttle = function (fn, delay = 500) {
-    let timer = null;
-    let beginTime = new Date().getTime();
-    return function () {
-        let _self = this;
-        let args = arguments;
+	let timer = null;
+	let beginTime = new Date().getTime();
+	return function () {
+		let _self = this;
+		let args = arguments;
 
-        let currentTime = new Date().getTime();
-        clearTimeout(timer);
-        timer = null;
-        if (currentTime - beginTime >= delay) {
-            fn.apply(_self, args);
-            beginTime = currentTime;
-        } else {
-            timer = setTimeout(() => {
-                fn.apply(_self, args);
-            }, delay);
-        }
-    };
+		let currentTime = new Date().getTime();
+		clearTimeout(timer);
+		timer = null;
+		if (currentTime - beginTime >= delay) {
+			fn.apply(_self, args);
+			beginTime = currentTime;
+		} else {
+			timer = setTimeout(() => {
+				fn.apply(_self, args);
+			}, delay);
+		}
+	};
 }
 
 /**
@@ -119,7 +119,7 @@ commonUtils.throttle = function (fn, delay = 500) {
  * @returns {boolean} true 是函数 false 不是函数
  */
 commonUtils.isFunction = function (value) {
-    return toString.call(value) === '[object Function]';
+	return toString.call(value) === '[object Function]';
 }
 
 /**
@@ -128,7 +128,7 @@ commonUtils.isFunction = function (value) {
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isString = function (value) {
-    return typeof value === 'string';
+	return typeof value === 'string';
 }
 
 /**
@@ -137,7 +137,7 @@ commonUtils.isString = function (value) {
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isNumber = function (value) {
-    return typeof value === 'number';
+	return typeof value === 'number';
 }
 
 /**
@@ -146,7 +146,7 @@ commonUtils.isNumber = function (value) {
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isObject = function (value) {
-    return value !== null && typeof value === 'object';
+	return value !== null && typeof value === 'object';
 }
 
 /**
@@ -155,21 +155,21 @@ commonUtils.isObject = function (value) {
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isUndefined = function (value) {
-    return typeof value === 'undefined';
+	return typeof value === 'undefined';
 }
 
 /**
  * 禁用后退功能 执行此方法后 将不不能使用浏览器的前进后退功能
  */
 commonUtils.handleDisableBackOrForward = function () {
-    if (window.history && window.history.pushState) {
-        $(window).on('popstate', function () {
-            window.history.pushState('forward', null, '#');
-            window.history.forward(1);
-        });
-    }
-    window.history.pushState('forward', null, '#');
-    window.history.forward(1);
+	if (window.history && window.history.pushState) {
+		$(window).on('popstate', function () {
+			window.history.pushState('forward', null, '#');
+			window.history.forward(1);
+		});
+	}
+	window.history.pushState('forward', null, '#');
+	window.history.forward(1);
 }
 
 /**
@@ -179,16 +179,16 @@ commonUtils.handleDisableBackOrForward = function () {
  * @returns {*} 返回一个新数组
  */
 commonUtils.uniqueByObject = function (array, propertiesName) {
-    let len = array.length
-    for (let i = 0; i < len; i++) {
-        for (let j = i + 1; j < len; j++) {
-            if (array[i][propertiesName] === array[j][propertiesName]) {
-                array.splice(j, 1);
-                len--;
-            }
-        }
-    }
-    return array;
+	let len = array.length
+	for (let i = 0; i < len; i++) {
+		for (let j = i + 1; j < len; j++) {
+			if (array[i][propertiesName] === array[j][propertiesName]) {
+				array.splice(j, 1);
+				len--;
+			}
+		}
+	}
+	return array;
 }
 
 /**
@@ -197,13 +197,13 @@ commonUtils.uniqueByObject = function (array, propertiesName) {
  * @returns {*[]}
  */
 commonUtils.unique = function (array) {
-    let _arr1 = [];
-    for (let i = 0, len = array.length; i < len; i++) {
-        if (_arr1.indexOf(array[i]) === -1) {
-            _arr1[_arr1.length] = array[i];
-        }
-    }
-    return _arr1;
+	let _arr1 = [];
+	for (let i = 0, len = array.length; i < len; i++) {
+		if (_arr1.indexOf(array[i]) === -1) {
+			_arr1[_arr1.length] = array[i];
+		}
+	}
+	return _arr1;
 }
 
 /**
@@ -212,16 +212,26 @@ commonUtils.unique = function (array) {
  * @param callback 复制后的回调函数
  */
 commonUtils.copyShane = function (shareContent, callback) {
-    let _input = document.createElement("input"); // 直接构建input
-    _input.value = shareContent; // 设置内容
-    document.body.appendChild(_input); // 添加临时实例
-    _input.select(); // 选择实例内容
-    document.execCommand("Copy"); // 执行复制
-    document.body.removeChild(_input); // 删除临时实例
+	let _input = document.createElement("input"); // 直接构建input
+	_input.value = shareContent; // 设置内容
+	document.body.appendChild(_input); // 添加临时实例
+	_input.select(); // 选择实例内容
+	document.execCommand("Copy"); // 执行复制
+	document.body.removeChild(_input); // 删除临时实例
 
-    if (callback instanceof Function) {
-        callback();
-    }
+	if (callback instanceof Function) {
+		callback();
+	}
+}
+
+
+/**
+ * 是否是一个空的对象 注意  值兼容ie 9 以上浏览器调用
+ * @param obj 需要查询是否为空的对象
+ * @returns {boolean}   是空或者不是空
+ */
+commonUtils.isEmptyObject = function (obj) {
+	return Object.keys(obj).length === 0
 }
 
 
@@ -233,10 +243,10 @@ commonUtils.copyShane = function (shareContent, callback) {
  * @returns {string|null} 获取到的值， 如果是空返回null
  */
 urlUtils.getUrlParam = function (name) {
-    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    let r = window.location.search.substr(1).match(reg);  //匹配目标参数
-    if (r != null) return unescape(r[2]);
-    return null; //返回参数值
+	let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	let r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r != null) return unescape(r[2]);
+	return null; //返回参数值
 }
 
 
@@ -249,25 +259,25 @@ urlUtils.getUrlParam = function (name) {
  * @returns {{}} 返回值类型一个包含日期时间星期的对象
  */
 dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0 = false) {
-    let _timeStamp = new Date(time)
-    let _timeStampObj = {}
-    _timeStampObj.WEEKMAPPING = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
-    _timeStampObj.year = _timeStamp.getFullYear()
-    _timeStampObj.month = _timeStamp.getMonth() + 1
-    _timeStampObj.week = _timeStamp.getDay()
-    _timeStampObj.day = _timeStamp.getDate()
-    _timeStampObj.hour = _timeStamp.getHours()
-    _timeStampObj.minutes = _timeStamp.getMinutes()
-    _timeStampObj.seconds = _timeStamp.getSeconds()
-    if (fill0) {
-        _timeStampObj.month = commonUtils.fillWith0(_timeStampObj.month)
-        _timeStampObj.day = commonUtils.fillWith0(_timeStampObj.day)
-        _timeStampObj.hour = commonUtils.fillWith0(_timeStampObj.hour)
-        _timeStampObj.minutes = commonUtils.fillWith0(_timeStampObj.minutes)
-        _timeStampObj.seconds = commonUtils.fillWith0(_timeStampObj.seconds)
-    }
+	let _timeStamp = new Date(time)
+	let _timeStampObj = {}
+	_timeStampObj.WEEKMAPPING = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+	_timeStampObj.year = _timeStamp.getFullYear()
+	_timeStampObj.month = _timeStamp.getMonth() + 1
+	_timeStampObj.week = _timeStamp.getDay()
+	_timeStampObj.day = _timeStamp.getDate()
+	_timeStampObj.hour = _timeStamp.getHours()
+	_timeStampObj.minutes = _timeStamp.getMinutes()
+	_timeStampObj.seconds = _timeStamp.getSeconds()
+	if (fill0) {
+		_timeStampObj.month = commonUtils.fillWith0(_timeStampObj.month)
+		_timeStampObj.day = commonUtils.fillWith0(_timeStampObj.day)
+		_timeStampObj.hour = commonUtils.fillWith0(_timeStampObj.hour)
+		_timeStampObj.minutes = commonUtils.fillWith0(_timeStampObj.minutes)
+		_timeStampObj.seconds = commonUtils.fillWith0(_timeStampObj.seconds)
+	}
 
-    return _timeStampObj
+	return _timeStampObj
 }
 
 /**
@@ -278,19 +288,19 @@ dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0 = false) {
  * @returns {string|{}}
  */
 countDownUtils.handleCountDown = function (second, resultType, fill0) {
-    let _timerObj = {};
-    if (second >= 0) {
-        _timerObj.minutes = Math.floor(second / 60);
-        _timerObj.seconds = Math.floor(second % 60);
-    }
-    if (fill0) {
-        _timerObj.minutes = commonUtils.fillWith0(_timerObj.minutes)
-        _timerObj.seconds = commonUtils.fillWith0(_timerObj.seconds)
-    }
-    if (resultType === "object") {
-        return _timerObj;
-    }
-    return _timerObj.minutes + ":" + _timerObj.seconds;
+	let _timerObj = {};
+	if (second >= 0) {
+		_timerObj.minutes = Math.floor(second / 60);
+		_timerObj.seconds = Math.floor(second % 60);
+	}
+	if (fill0) {
+		_timerObj.minutes = commonUtils.fillWith0(_timerObj.minutes)
+		_timerObj.seconds = commonUtils.fillWith0(_timerObj.seconds)
+	}
+	if (resultType === "object") {
+		return _timerObj;
+	}
+	return _timerObj.minutes + ":" + _timerObj.seconds;
 }
 
 /**
@@ -307,41 +317,41 @@ countDownUtils.handleCountDown = function (second, resultType, fill0) {
  * @returns {{message: string, type: number, day: number}}
  */
 dateUtils.selectDateRange = function (beginTime, endTime, minNum = 0, maxNum = 0) {
-    let dateSpan, calcData;
-    let begin = new Date(beginTime).getTime();
-    let end = new Date(endTime).getTime();
-    if (end - begin < 0) {
-        return {
-            message: "开始时间大于结束时间",
-            type: 0,
-            day: -1
-        };
-    }
-    // 判断选择的时间是否大于十四天
-    dateSpan = end - begin;
-    dateSpan = Math.abs(dateSpan);
-    calcData = Math.floor(dateSpan / (24 * 3600 * 1000));
+	let dateSpan, calcData;
+	let begin = new Date(beginTime).getTime();
+	let end = new Date(endTime).getTime();
+	if (end - begin < 0) {
+		return {
+			message: "开始时间大于结束时间",
+			type: 0,
+			day: -1
+		};
+	}
+	// 判断选择的时间是否大于十四天
+	dateSpan = end - begin;
+	dateSpan = Math.abs(dateSpan);
+	calcData = Math.floor(dateSpan / (24 * 3600 * 1000));
 
-    if (calcData < minNum) {
-        return {
-            message: "选择时间需" + minNum + "-" + maxNum + "天",
-            type: 1,
-            day: -1
-        };
-    }
+	if (calcData < minNum) {
+		return {
+			message: "选择时间需" + minNum + "-" + maxNum + "天",
+			type: 1,
+			day: -1
+		};
+	}
 
-    if (calcData > maxNum) {
-        return {
-            message: "选择的时间大于" + maxNum + "天",
-            type: 2,
-            day: -1
-        };
-    }
-    return {
-        message: "相差" + calcData + "天",
-        type: 3,
-        day: calcData
-    }
+	if (calcData > maxNum) {
+		return {
+			message: "选择的时间大于" + maxNum + "天",
+			type: 2,
+			day: -1
+		};
+	}
+	return {
+		message: "相差" + calcData + "天",
+		type: 3,
+		day: calcData
+	}
 }
 
 /**
@@ -352,9 +362,9 @@ dateUtils.selectDateRange = function (beginTime, endTime, minNum = 0, maxNum = 0
  * @returns {{}} 返回一个时间对象
  */
 dateUtils.timeCalculation = function (timeStamp, postponeTime = 0, fill0 = true) {
-    let date = new Date(timeStamp).getTime();
-    let _afterDate = date + (1000 * 60 * 60 * 24 * postponeTime)
-    return dateUtils.formatTimeStrOrTimeStampToObject(_afterDate, fill0)
+	let date = new Date(timeStamp).getTime();
+	let _afterDate = date + (1000 * 60 * 60 * 24 * postponeTime)
+	return dateUtils.formatTimeStrOrTimeStampToObject(_afterDate, fill0)
 }
 
 /**
@@ -362,7 +372,7 @@ dateUtils.timeCalculation = function (timeStamp, postponeTime = 0, fill0 = true)
  * @returns {{}} 返回当前时间对象
  */
 dateUtils.getCurrentDate = function () {
-    return dateUtils.formatTimeStrOrTimeStampToObject(new Date(), true)
+	return dateUtils.formatTimeStrOrTimeStampToObject(new Date(), true)
 }
 
 /** ==================== storageUtils ====================*/
@@ -374,15 +384,15 @@ dateUtils.getCurrentDate = function () {
  * @returns {*} 成功返回存储名称 否则返回null
  */
 storageUtils.saveStorage = function (storageName, storageVal) {
-    if (storageName.trim() === "") {
-        throw new Error("saveStorage error：storageName does not empty")
-    }
-    try {
-        localStorage.setItem(storageName, JSON.stringify(storageVal))
-        return storageName
-    } catch (e) {
-        throw new Error("saveStorage error: save fail" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("saveStorage error：storageName does not empty")
+	}
+	try {
+		localStorage.setItem(storageName, JSON.stringify(storageVal))
+		return storageName
+	} catch (e) {
+		throw new Error("saveStorage error: save fail" + e)
+	}
 
 }
 /**
@@ -392,15 +402,15 @@ storageUtils.saveStorage = function (storageName, storageVal) {
  * @returns {null|*} 成功返回存储名称 否则返回null
  */
 storageUtils.saveSession = function (storageName, storageVal) {
-    if (storageName.trim() === "") {
-        throw new Error("saveSession error：storageName does not empty")
-    }
-    try {
-        sessionStorage.setItem(storageName, JSON.stringify(storageVal))
-        return storageName
-    } catch (e) {
-        throw new Error("saveSession error：save fail:" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("saveSession error：storageName does not empty")
+	}
+	try {
+		sessionStorage.setItem(storageName, JSON.stringify(storageVal))
+		return storageName
+	} catch (e) {
+		throw new Error("saveSession error：save fail:" + e)
+	}
 
 }
 
@@ -410,14 +420,14 @@ storageUtils.saveSession = function (storageName, storageVal) {
  * @returns {any} 经过转换 的值
  */
 storageUtils.getStorage = function (storageName) {
-    if (storageName.trim() === "") {
-        throw new Error("getStorage error:storageName does not empty")
-    }
-    try {
-        return JSON.parse(localStorage.getItem(storageName));
-    } catch (e) {
-        throw new Error("getStorage error:get fail" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("getStorage error:storageName does not empty")
+	}
+	try {
+		return JSON.parse(localStorage.getItem(storageName));
+	} catch (e) {
+		throw new Error("getStorage error:get fail" + e)
+	}
 }
 /**
  *  根据传入的 storageName 获取 sessionStorage 中的值
@@ -425,14 +435,14 @@ storageUtils.getStorage = function (storageName) {
  * @returns {any} 经过转换 的值
  */
 storageUtils.getSession = function (storageName) {
-    if (storageName.trim() === "") {
-        throw new Error("getSession error:storageName does not empty")
-    }
-    try {
-        return JSON.parse(sessionStorage.getItem(storageName));
-    } catch (e) {
-        throw new Error("getSession error:get fail" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("getSession error:storageName does not empty")
+	}
+	try {
+		return JSON.parse(sessionStorage.getItem(storageName));
+	} catch (e) {
+		throw new Error("getSession error:get fail" + e)
+	}
 }
 
 /**
@@ -441,15 +451,15 @@ storageUtils.getSession = function (storageName) {
  * @returns {*} 移除成功返回 名称
  */
 storageUtils.removeStorage = function (storageName) {
-    if (storageName.trim() === "") {
-        throw new Error("removeStorage error:storageName does not empty")
-    }
-    try {
-        localStorage.removeItem(storageName)
-        return storageName
-    } catch (e) {
-        throw new Error("removeStorage error:remove fail" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("removeStorage error:storageName does not empty")
+	}
+	try {
+		localStorage.removeItem(storageName)
+		return storageName
+	} catch (e) {
+		throw new Error("removeStorage error:remove fail" + e)
+	}
 }
 /**
  * 移除 sessionStorage 中的指定数据
@@ -457,13 +467,17 @@ storageUtils.removeStorage = function (storageName) {
  * @returns {*} 移除成功返回 名称
  */
 storageUtils.removeSession = function (storageName) {
-    if (storageName.trim() === "") {
-        throw new Error("removeSession error:storageName does not empty")
-    }
-    try {
-        sessionStorage.removeItem(storageName)
-        return storageName
-    } catch (e) {
-        throw new Error("removeSession error:remove fail" + e)
-    }
+	if (storageName.trim() === "") {
+		throw new Error("removeSession error:storageName does not empty")
+	}
+	try {
+		sessionStorage.removeItem(storageName)
+		return storageName
+	} catch (e) {
+		throw new Error("removeSession error:remove fail" + e)
+	}
 }
+
+
+/***** test  */
+
