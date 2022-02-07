@@ -396,6 +396,38 @@ storageUtils.saveStorage = function (storageName, storageVal) {
 
 }
 /**
+ *  根据传入的 storageName 获取 localStorage 中的值
+ * @param storageName 名称
+ * @returns {any} 经过转换 的值
+ */
+storageUtils.getStorage = function (storageName) {
+	if (storageName.trim() === "") {
+		throw new Error("getStorage error:storageName does not empty")
+	}
+	try {
+		return JSON.parse(localStorage.getItem(storageName));
+	} catch (e) {
+		throw new Error("getStorage error:get fail" + e)
+	}
+}
+/**
+ * 移除 localStorage 中的指定数据
+ * @param storageName 需要被移除的数据的名称
+ * @returns {*} 移除成功返回 名称
+ */
+storageUtils.removeStorage = function (storageName) {
+	if (storageName.trim() === "") {
+		throw new Error("removeStorage error:storageName does not empty")
+	}
+	try {
+		localStorage.removeItem(storageName)
+		return storageName
+	} catch (e) {
+		throw new Error("removeStorage error:remove fail" + e)
+	}
+}
+
+/**
  * 保存内容到 sessionStorage 中
  * @param storageName 本地仓库名称
  * @param storageVal 需要存储的值
@@ -413,22 +445,6 @@ storageUtils.saveSession = function (storageName, storageVal) {
 	}
 
 }
-
-/**
- *  根据传入的 storageName 获取 localStorage 中的值
- * @param storageName 名称
- * @returns {any} 经过转换 的值
- */
-storageUtils.getStorage = function (storageName) {
-	if (storageName.trim() === "") {
-		throw new Error("getStorage error:storageName does not empty")
-	}
-	try {
-		return JSON.parse(localStorage.getItem(storageName));
-	} catch (e) {
-		throw new Error("getStorage error:get fail" + e)
-	}
-}
 /**
  *  根据传入的 storageName 获取 sessionStorage 中的值
  * @param storageName 名称
@@ -442,23 +458,6 @@ storageUtils.getSession = function (storageName) {
 		return JSON.parse(sessionStorage.getItem(storageName));
 	} catch (e) {
 		throw new Error("getSession error:get fail" + e)
-	}
-}
-
-/**
- * 移除 localStorage 中的指定数据
- * @param storageName 需要被移除的数据的名称
- * @returns {*} 移除成功返回 名称
- */
-storageUtils.removeStorage = function (storageName) {
-	if (storageName.trim() === "") {
-		throw new Error("removeStorage error:storageName does not empty")
-	}
-	try {
-		localStorage.removeItem(storageName)
-		return storageName
-	} catch (e) {
-		throw new Error("removeStorage error:remove fail" + e)
 	}
 }
 /**
@@ -477,7 +476,6 @@ storageUtils.removeSession = function (storageName) {
 		throw new Error("removeSession error:remove fail" + e)
 	}
 }
-
 
 /***** test  */
 
