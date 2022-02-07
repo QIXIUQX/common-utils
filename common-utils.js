@@ -249,6 +249,14 @@ urlUtils.getUrlParam = function (name) {
 	return null; //返回参数值
 }
 
+/**
+ * 获取当前的url
+ * @returns {*}
+ */
+urlUtils.currentUrl = function () {
+	return window.location.href;
+}
+
 
 /** ==================== dateUtils ====================*/
 
