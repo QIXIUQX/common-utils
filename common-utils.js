@@ -256,6 +256,14 @@ commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
 	return _tempArray
 }
 
+/**
+ * 将首字母都转换成大写
+ * @param str 需要被转换的字符串
+ * @returns {*} 转换后的字符串
+ */
+commonUtils.capitalizeEveryWord = function (str) {
+	return str.replace(/\b[a-z]/g, char => char.toUpperCase());
+}
 
 /** ==================== getUrlParam ====================*/
 
@@ -515,6 +523,17 @@ domUtils.backTop = function () {
 	document.body.scrollTop = 0;
 	document.documentElement.scrollTop = 0;
 }
+
+/**
+ * bottomVisible
+ * @returns {boolean} 是否滚动到底部
+ */
+domUtils.bottomVisible = function () {
+	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
+}
+
+
+
 
 /***** test  */
 
