@@ -235,6 +235,27 @@ commonUtils.isEmptyObject = function (obj) {
 	return Object.keys(obj).length === 0
 }
 
+/**
+ * 获取不重复的随机数数组 长度必须小于等于最大值减去最小值
+ * @param length 需要获取的长度
+ * @param minNum 最小值
+ * @param maxNum 最大值
+ * @returns {*[]} 生成的不重复随机数数组
+ */
+commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
+	if (maxNum - minNum < length) throw new Error("随机数长度必须小于最大数减最小数")
+	let _tempArray = []
+	for (let i = 0; i < length; i++) {
+		let randomNum = commonUtils.randomNum(minNum, maxNum)
+		if (_tempArray.indexOf(randomNum) !== -1) {
+			i--
+		} else {
+			_tempArray[_tempArray.length] = randomNum
+		}
+	}
+	return _tempArray
+}
+
 
 /** ==================== getUrlParam ====================*/
 
@@ -496,5 +517,4 @@ domUtils.backTop = function () {
 }
 
 /***** test  */
-
 
