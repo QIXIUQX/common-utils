@@ -8,6 +8,8 @@ let storageUtils = {}
 let countDownUtils = {}
 /** 公共方法 */
 let commonUtils = {}
+//dom 操作
+let domUtils = {}
 
 
 /** ==================== commonUtils ====================*/
@@ -223,7 +225,6 @@ commonUtils.copyShane = function (shareContent, callback) {
 		callback();
 	}
 }
-
 
 /**
  * 是否是一个空的对象 注意  值兼容ie 9 以上浏览器调用
@@ -485,5 +486,15 @@ storageUtils.removeSession = function (storageName) {
 	}
 }
 
+/******** dom ******/
+/**
+ * 返回页面顶部
+ */
+domUtils.backTop = function () {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
+
 /***** test  */
+
 
