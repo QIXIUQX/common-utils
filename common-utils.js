@@ -265,6 +265,15 @@ commonUtils.capitalizeEveryWord = function (str) {
 	return str.replace(/\b[a-z]/g, char => char.toUpperCase());
 }
 
+/**
+ * 检查变量或值是否为空
+ * @param val 需要被检查的值
+ * @returns {boolean} 是否为空
+ */
+commonUtils.checkNull = function (val) {
+	return val === undefined || val === null;
+}
+
 /** ==================== getUrlParam ====================*/
 
 /**
@@ -532,8 +541,6 @@ domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
 }
 
-
-
-
 /***** test  */
+console.log(commonUtils.checkNull(""));
 
