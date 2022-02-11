@@ -11,7 +11,7 @@ let commonUtils = {}
 //dom 操作
 let domUtils = {}
 
-/** ==================== commonUtils ====================*/
+//commonUtils
 
 /**
  * 不足10的话前面补0
@@ -277,7 +277,7 @@ commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
 }
 
-/** ==================== getUrlParam ====================*/
+//urlUtils
 
 /**
  * 获取url中的参数对应的值
@@ -300,7 +300,7 @@ urlUtils.currentUrl = function () {
 }
 
 
-/** ==================== dateUtils ====================*/
+//dateUtils
 
 /**
  * 将指定的时间格式化为时间对象，并以对象的形式放回出来，注意：星期日为0
@@ -499,7 +499,7 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 }
 
 
-/** ==================== storageUtils ====================*/
+//storageUtils
 
 /**
  *  保存内容到 localStorage 中
@@ -601,7 +601,7 @@ storageUtils.removeSession = function (storageName) {
 	}
 }
 
-/******** dom ******/
+//dom 操作相关方法
 /**
  * 返回页面顶部
  */
