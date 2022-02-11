@@ -612,7 +612,7 @@ domUtils.backTop = function () {
 }
 
 /**
- * bottomVisible
+ * bottomVisible 检测页面是否滚动到底部，
  * @returns {boolean} 是否滚动到底部
  */
 domUtils.bottomVisible = function () {
