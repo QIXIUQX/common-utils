@@ -270,7 +270,7 @@ commonUtils.capitalizeEveryWord = function (str) {
  * @param {*} val 需要被检查的值
  * @returns {boolean} 是否为空
  */
-commonUtils.checkNull = function (val) {
+commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
 }
 
@@ -613,7 +613,3 @@ domUtils.bottomVisible = function () {
 
 /***** test  */
 console.log(commonUtils.checkNull(""), "commonUtils.checkNull");
-
-console.log(dateUtils.dateFormat(new Date("2020-04-1 00:00:00"), "yyyy-MM-dd hh:mm:ss 星期week 第quarter季度"));
-
-console.log(commonUtils.randomNumNoRepeat(10, 0, 9));
