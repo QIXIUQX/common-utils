@@ -11,7 +11,6 @@ let commonUtils = {}
 //dom 操作
 let domUtils = {}
 
-
 /** ==================== commonUtils ====================*/
 
 /**
@@ -55,7 +54,8 @@ commonUtils.randomNum = function (minNum, maxNum) {
  * @param {Boolean} trigger 首次是否触发，默认不触发
  * @returns {*} 如果防抖函数有返回值则通过res 返回
  */
-commonUtils.debounce = function (fn, delay, trigger = false) {
+commonUtils.debounce = function (fn, delay, trigger) {
+	if (!trigger) trigger = false
 	let t = null;
 	let res = null;
 	let debounced = function () {
@@ -67,7 +67,7 @@ commonUtils.debounce = function (fn, delay, trigger = false) {
 		if (trigger) {
 			let exec = !t;
 
-			t = setTimeout(() => {
+			t = setTimeout(function () {
 				t = null;
 			}, delay);
 
@@ -75,7 +75,7 @@ commonUtils.debounce = function (fn, delay, trigger = false) {
 				res = fn.apply(_self, args);
 			}
 		} else {
-			t = setTimeout(() => {
+			t = setTimeout(function () {
 				res = fn.apply(_self, args);
 			}, delay);
 		}
@@ -91,10 +91,11 @@ commonUtils.debounce = function (fn, delay, trigger = false) {
 
 /**
  * 节流函数
- * @param {Function} fn 函数
+ * @param { Function } fn 函数
  * @param {Number} delay  延迟时间
  */
-commonUtils.throttle = function (fn, delay = 500) {
+commonUtils.throttle = function (fn, delay) {
+	if (!delay) delay = 500
 	let timer = null;
 	let beginTime = new Date().getTime();
 	return function () {
@@ -108,7 +109,7 @@ commonUtils.throttle = function (fn, delay = 500) {
 			fn.apply(_self, args);
 			beginTime = currentTime;
 		} else {
-			timer = setTimeout(() => {
+			timer = setTimeout(function () {
 				fn.apply(_self, args);
 			}, delay);
 		}
@@ -262,7 +263,9 @@ commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
  * @returns {String} 转换后的字符串
  */
 commonUtils.capitalizeEveryWord = function (str) {
-	return str.replace(/\b[a-z]/g, char => char.toUpperCase());
+	return str.replace(/\b[a-z]/g, function (char) {
+		char.toUpperCase()
+	});
 }
 
 /**
@@ -310,7 +313,7 @@ dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0) {
 	let _timeStamp = new Date(time)
 	let _timeStampObj = {
 		"WEEK_MAP": ["日", "一", "二", "三", "四", "五", "六"],
-		"QUARTER_MAP": ["一", "二", "三", "四",],
+		"QUARTER_MAP": ["一", "二", "三", "四"],
 		"year": _timeStamp.getFullYear(),
 		"month": _timeStamp.getMonth() + 1,
 		"week": _timeStamp.getDay(),
@@ -334,9 +337,9 @@ dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0) {
 
 /**
  * 倒计时功能 可通过配置resultType 来决定返回值类型 （string返回"00:10"|object返回{minutes:00,seconds:10}） 是否补0 由fill0 决定
- * @param second 每次倒计时的秒数 必须填写
- * @param resultType 返回值类型  string 或者object两种类型 默认字符串
- * @param fill0 在小于10的时候是否补0 默认不补
+ * @param {Number} second 每次倒计时的秒数 必须填写
+ * @param {String|Object} resultType 返回值类型  string 或者object两种类型 默认字符串
+ * @param {Boolean}fill0 在小于10的时候是否补0 默认不补
  * @returns {string|{}}
  */
 countDownUtils.handleCountDown = function (second, resultType, fill0) {
@@ -362,13 +365,15 @@ countDownUtils.handleCountDown = function (second, resultType, fill0) {
  *     type：返回类型（0：开始时间大于结束时间，1：返回时间大于开始时间，并且小于结束时间，2：返回时间要在时间段内，3：符合所有条件）
  *     day ：返回的天数 （在type属于3 的时候这里才有大于等于0的值）
  * }
- * @param beginTime
- * @param endTime
- * @param minNum
- * @param maxNum
- * @returns {{message: string, type: number, day: number}}
+ * @param {String:Number|Date}beginTime
+ * @param {String:Number|Date} endTime
+ * @param {Number} minNum
+ * @param {Number} maxNum
+ * @returns {Object}
  */
-dateUtils.selectDateRange = function (beginTime, endTime, minNum = 0, maxNum = 0) {
+dateUtils.selectDateRange = function (beginTime, endTime, minNum, maxNum) {
+	if (!minNum) minNum = 0
+	if (!maxNum) maxNum = 0
 	let dateSpan, calcData;
 	let begin = new Date(beginTime).getTime();
 	let end = new Date(endTime).getTime();
@@ -413,7 +418,9 @@ dateUtils.selectDateRange = function (beginTime, endTime, minNum = 0, maxNum = 0
  * @param fill0 在小于10 的时候是否补零
  * @returns {{}} 返回一个时间对象
  */
-dateUtils.timeCalculation = function (timeStamp, postponeTime = 0, fill0 = true) {
+dateUtils.timeCalculation = function (timeStamp, postponeTime, fill0) {
+	if (!postponeTime) postponeTime = 0
+	if (!fill0) fill0 = true
 	let date = new Date(timeStamp).getTime();
 	let _afterDate = date + (1000 * 60 * 60 * 24 * postponeTime)
 	return dateUtils.formatTimeStrOrTimeStampToObject(_afterDate, fill0)
@@ -447,32 +454,32 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 	const DATE_KEY_MAP = [
 		{
 			reg: /yyyy/,
-			date: "year",
+			date: "year"
 		},
 		{
 			reg: /MM/,
-			date: "month",
+			date: "month"
 		},
 		{
 			reg: /dd/,
-			date: "day",
+			date: "day"
 		},
 		{
 			reg: /hh/,
-			date: "hour",
+			date: "hour"
 		},
 		{
 			reg: /mm/,
-			date: "minutes",
+			date: "minutes"
 		},
 		{
 			reg: /ss/,
-			date: "seconds",
+			date: "seconds"
 		},
 		{
 			reg: /S/,
-			date: "milliSeconds",
-		},
+			date: "milliSeconds"
+		}
 	]
 	let _date = dateUtils.formatTimeStrOrTimeStampToObject(timeStamp, true)
 
@@ -612,4 +619,4 @@ domUtils.bottomVisible = function () {
 }
 
 /***** test  */
-console.log(commonUtils.checkNull(""), "commonUtils.checkNull");
+console.log(commonUtils.checkVariableNull(""), "commonUtils.checkNull");
