@@ -15,9 +15,9 @@ let domUtils = {}
 /** ==================== commonUtils ====================*/
 
 /**
- * 不足10 补0
- * @param number
- * @returns {*|string}
+ * 不足10的话前面补0
+ * @param {Number} number
+ * @returns {Number|string}
  */
 commonUtils.fillWith0 = function (number) {
 	return number >= 10 ? number : "0" + number
@@ -25,8 +25,8 @@ commonUtils.fillWith0 = function (number) {
 
 /**
  * 打乱数组中元素位置
- * @param array 需要被打乱的数组
- * @returns {*[]}   返回一个新的数组
+ * @param {Array} array 需要被打乱的数组
+ * @returns {Array}   返回一个新的数组
  */
 commonUtils.messArray = function (array) {
 	let _after = [];
@@ -40,20 +40,20 @@ commonUtils.messArray = function (array) {
 
 /**
  * 生成从minNum到maxNum的随机数
- * @param minNum 最小值
- * @param maxNum 最大值
- * @returns {number} 返回随机值
+ * @param {Number} minNum 最小值
+ * @param {Number} maxNum 最大值
+ * @returns {Number} 返回随机值
  */
 commonUtils.randomNum = function (minNum, maxNum) {
-	return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+	return parseInt((Math.random() * (maxNum - minNum + 1) + minNum).toString(), 10);
 }
 
 /**
  * 防抖函数
- * @param {*} fn 回调函数
- * @param {*} delay 延迟时间
- * @param {*} trigger 首次是否触发，默认不触发
- * @returns 如果防抖函数有返回值则通过res 返回
+ * @param { Function } fn 回调函数
+ * @param {Number} delay 延迟时间
+ * @param {Boolean} trigger 首次是否触发，默认不触发
+ * @returns {*} 如果防抖函数有返回值则通过res 返回
  */
 commonUtils.debounce = function (fn, delay, trigger = false) {
 	let t = null;
@@ -91,8 +91,8 @@ commonUtils.debounce = function (fn, delay, trigger = false) {
 
 /**
  * 节流函数
- * @param {*} fn 函数
- * @param {*} delay  延迟时间
+ * @param {Function} fn 函数
+ * @param {Number} delay  延迟时间
  */
 commonUtils.throttle = function (fn, delay = 500) {
 	let timer = null;
@@ -117,7 +117,7 @@ commonUtils.throttle = function (fn, delay = 500) {
 
 /**
  * 是否是一个函数
- * @param value 需要被检测的值
+ * @param {*} value 需要被检测的值
  * @returns {boolean} true 是函数 false 不是函数
  */
 commonUtils.isFunction = function (value) {
@@ -126,7 +126,7 @@ commonUtils.isFunction = function (value) {
 
 /**
  * 是否是字符串
- * @param value 需要被检测的值
+ * @param {*} value 需要被检测的值
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isString = function (value) {
@@ -135,7 +135,7 @@ commonUtils.isString = function (value) {
 
 /**
  * 是否是数字
- * @param value 需要被检测的值
+ * @param {*} value 需要被检测的值
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isNumber = function (value) {
@@ -144,7 +144,7 @@ commonUtils.isNumber = function (value) {
 
 /**
  * 是否是对象
- * @param value 需要被检测的值
+ * @param {*} value 需要被检测的值
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isObject = function (value) {
@@ -153,7 +153,7 @@ commonUtils.isObject = function (value) {
 
 /**
  * 是否是 undefined
- * @param value 需要被检测的值
+ * @param {*} value 需要被检测的值
  * @returns {boolean} true 是 false 不是
  */
 commonUtils.isUndefined = function (value) {
@@ -176,9 +176,9 @@ commonUtils.handleDisableBackOrForward = function () {
 
 /**
  * 数组中存放对象的去重
- * @param array 需要去重的数组
- * @param propertiesName 根据什么属性做去重
- * @returns {*} 返回一个新数组
+ * @param {Array} array 需要去重的数组
+ * @param {String} propertiesName 根据什么属性做去重
+ * @returns {Array} 返回一个新数组
  */
 commonUtils.uniqueByObject = function (array, propertiesName) {
 	let len = array.length
@@ -195,8 +195,8 @@ commonUtils.uniqueByObject = function (array, propertiesName) {
 
 /**
  * 普通数组去重
- * @param array 需要操作的数组
- * @returns {*[]}
+ * @param {Array} array 需要操作的数组
+ * @returns {Array} 去重后的数组
  */
 commonUtils.unique = function (array) {
 	let _arr1 = [];
@@ -210,8 +210,8 @@ commonUtils.unique = function (array) {
 
 /**
  * 实现网页的复制功能 注意 必须存在网页才可正常使用
- * @param shareContent 需要复制的内容
- * @param callback 复制后的回调函数
+ * @param {String} shareContent 需要复制的内容
+ * @param {Function} callback 复制后的回调函数
  */
 commonUtils.copyShane = function (shareContent, callback) {
 	let _input = document.createElement("input"); // 直接构建input
@@ -228,7 +228,7 @@ commonUtils.copyShane = function (shareContent, callback) {
 
 /**
  * 是否是一个空的对象 注意  值兼容ie 9 以上浏览器调用
- * @param obj 需要查询是否为空的对象
+ * @param {Object} obj 需要查询是否为空的对象
  * @returns {boolean}   是空或者不是空
  */
 commonUtils.isEmptyObject = function (obj) {
@@ -237,13 +237,13 @@ commonUtils.isEmptyObject = function (obj) {
 
 /**
  * 获取不重复的随机数数组 长度必须小于等于最大值减去最小值
- * @param length 需要获取的长度
- * @param minNum 最小值
- * @param maxNum 最大值
- * @returns {*[]} 生成的不重复随机数数组
+ * @param {Number} length 需要获取的长度
+ * @param {Number} minNum 随机数最小值
+ * @param {Number} maxNum 随机数最大值
+ * @returns {Array} 生成的不重复随机数数组
  */
 commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
-	if (maxNum - minNum < length) throw new Error("随机数长度必须小于最大数减最小数")
+	if ((maxNum - minNum) + 1 < length) throw new Error("随机数长度必须小于最大随机数减最小随机数")
 	let _tempArray = []
 	for (let i = 0; i < length; i++) {
 		let randomNum = commonUtils.randomNum(minNum, maxNum)
@@ -258,8 +258,8 @@ commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
 
 /**
  * 将首字母都转换成大写
- * @param str 需要被转换的字符串
- * @returns {*} 转换后的字符串
+ * @param {String} str 需要被转换的字符串
+ * @returns {String} 转换后的字符串
  */
 commonUtils.capitalizeEveryWord = function (str) {
 	return str.replace(/\b[a-z]/g, char => char.toUpperCase());
@@ -267,7 +267,7 @@ commonUtils.capitalizeEveryWord = function (str) {
 
 /**
  * 检查变量或值是否为空
- * @param val 需要被检查的值
+ * @param {*} val 需要被检查的值
  * @returns {boolean} 是否为空
  */
 commonUtils.checkNull = function (val) {
@@ -278,7 +278,7 @@ commonUtils.checkNull = function (val) {
 
 /**
  * 获取url中的参数对应的值
- * @param name 参数名称
+ * @param { String } name 参数名称
  * @returns {string|null} 获取到的值， 如果是空返回null
  */
 urlUtils.getUrlParam = function (name) {
@@ -290,10 +290,10 @@ urlUtils.getUrlParam = function (name) {
 
 /**
  * 获取当前的url
- * @returns {*}
+ * @returns {String} 获取的url
  */
 urlUtils.currentUrl = function () {
-	return window.location.href;
+	return window.location.href.toString();
 }
 
 
@@ -301,21 +301,26 @@ urlUtils.currentUrl = function () {
 
 /**
  * 将指定的时间格式化为时间对象，并以对象的形式放回出来，注意：星期日为0
- * @param time time需要转换为对象的时间，支持时间日期字符串或时间戳
- * @param fill0 是否需要补0  false 不补0 true 补0
- * @returns {{}} 返回值类型一个包含日期时间星期的对象
+ * @param {String|Number|Date} time time需要转换为对象的时间，支持时间日期字符串或时间戳
+ * @param {Boolean} fill0 是否需要补0  false 不补0 true 补0
+ * @returns {Object} 返回值类型一个包含日期时间星期的对象
  */
-dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0 = false) {
+dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0) {
+	if (!fill0) fill0 = false
 	let _timeStamp = new Date(time)
-	let _timeStampObj = {}
-	_timeStampObj.WEEKMAPPING = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
-	_timeStampObj.year = _timeStamp.getFullYear()
-	_timeStampObj.month = _timeStamp.getMonth() + 1
-	_timeStampObj.week = _timeStamp.getDay()
-	_timeStampObj.day = _timeStamp.getDate()
-	_timeStampObj.hour = _timeStamp.getHours()
-	_timeStampObj.minutes = _timeStamp.getMinutes()
-	_timeStampObj.seconds = _timeStamp.getSeconds()
+	let _timeStampObj = {
+		"WEEK_MAP": ["日", "一", "二", "三", "四", "五", "六"],
+		"QUARTER_MAP": ["一", "二", "三", "四",],
+		"year": _timeStamp.getFullYear(),
+		"month": _timeStamp.getMonth() + 1,
+		"week": _timeStamp.getDay(),
+		"day": _timeStamp.getDate(),
+		"hour": _timeStamp.getHours(),
+		"minutes": _timeStamp.getMinutes(),
+		"seconds": _timeStamp.getSeconds(),
+		"milliSeconds": _timeStamp.getMilliseconds(),
+		"quarter": Math.floor((_timeStamp.getMonth() + 3) / 3) - 1
+	}
 	if (fill0) {
 		_timeStampObj.month = commonUtils.fillWith0(_timeStampObj.month)
 		_timeStampObj.day = commonUtils.fillWith0(_timeStampObj.day)
@@ -421,6 +426,71 @@ dateUtils.timeCalculation = function (timeStamp, postponeTime = 0, fill0 = true)
 dateUtils.getCurrentDate = function () {
 	return dateUtils.formatTimeStrOrTimeStampToObject(new Date(), true)
 }
+
+/**
+ * 将日期时间按照指定的字符串进行格式化() 如 传入 yyyy-MM-dd hh:mm:ss 将会返回 2022-02-11 12:24:48，字符含义：
+ * yyyy 年，
+ * MM 月，
+ * dd 日，
+ * hh 时（24小时制），
+ * mm 分，
+ * ss 秒，
+ * S 毫秒，
+ * week 周，
+ * quarter 季度
+ * @param timeStamp 需要被格式化的时间
+ * @param formatStr 指定格式化的字符串 如：yyyy-MM-dd hh:mm:ss
+ * @returns {string} 格式化后的字符串
+ */
+dateUtils.dateFormat = function (timeStamp, formatStr) {
+	let item
+	const DATE_KEY_MAP = [
+		{
+			reg: /yyyy/,
+			date: "year",
+		},
+		{
+			reg: /MM/,
+			date: "month",
+		},
+		{
+			reg: /dd/,
+			date: "day",
+		},
+		{
+			reg: /hh/,
+			date: "hour",
+		},
+		{
+			reg: /mm/,
+			date: "minutes",
+		},
+		{
+			reg: /ss/,
+			date: "seconds",
+		},
+		{
+			reg: /S/,
+			date: "milliSeconds",
+		},
+	]
+	let _date = dateUtils.formatTimeStrOrTimeStampToObject(timeStamp, true)
+
+	if (!formatStr) {
+		formatStr = "yyyy-MM-dd hh:mm:ss"
+	}
+
+	for (let i = 0; i < DATE_KEY_MAP.length; i++) {
+		item = DATE_KEY_MAP[i]
+		formatStr = formatStr.replace(item.reg, _date[item.date] + '')
+	}
+
+	formatStr = formatStr.replace(/week/g, _date.WEEK_MAP[_date.week] + "")
+	formatStr = formatStr.replace(/quarter/g, _date.QUARTER_MAP[_date.quarter] + "")
+
+	return formatStr
+}
+
 
 /** ==================== storageUtils ====================*/
 
@@ -542,5 +612,8 @@ domUtils.bottomVisible = function () {
 }
 
 /***** test  */
-console.log(commonUtils.checkNull(""));
+console.log(commonUtils.checkNull(""), "commonUtils.checkNull");
 
+console.log(dateUtils.dateFormat(new Date("2020-04-1 00:00:00"), "yyyy-MM-dd hh:mm:ss 星期week 第quarter季度"));
+
+console.log(commonUtils.randomNumNoRepeat(10, 0, 9));
