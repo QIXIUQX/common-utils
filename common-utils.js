@@ -445,6 +445,7 @@ dateUtils.getCurrentDate = function () {
  * S 毫秒，
  * week 周，
  * quarter 季度
+ * 完整字符串如： yyyy-MM-dd hh:mm:ss:S 星期week 第quarter季度 返回的字符串：2022-02-11 21:06:37:785 星期五 第一季度
  * @param timeStamp 需要被格式化的时间
  * @param formatStr 指定格式化的字符串 如：yyyy-MM-dd hh:mm:ss
  * @returns {string} 格式化后的字符串
