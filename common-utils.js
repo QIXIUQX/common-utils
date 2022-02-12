@@ -182,16 +182,16 @@ commonUtils.handleDisableBackOrForward = function () {
  * @returns {Array} 返回一个新数组
  */
 commonUtils.uniqueByObject = function (array, propertiesName) {
-	let len = array.length
-	for (let i = 0; i < len; i++) {
-		for (let j = i + 1; j < len; j++) {
-			if (array[i][propertiesName] === array[j][propertiesName]) {
-				array.splice(j, 1);
-				len--;
-			}
+	if (!propertiesName) throw new Error("必须传入属性名称已完成去重")
+	let result = [];
+	let obj = {};
+	for (let i = 0; i < array.length; i++) {
+		if (!obj[array[i][propertiesName]]) {
+			result[result.length] = array[i];
+			obj[array[i][propertiesName]] = true;
 		}
 	}
-	return array;
+	return result
 }
 
 /**
@@ -619,5 +619,4 @@ domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
 }
 
-/***** test  */
-console.log(commonUtils.checkVariableNull(""), "commonUtils.checkNull");
+// test 代码部分
