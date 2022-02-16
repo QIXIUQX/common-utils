@@ -8,20 +8,17 @@
 
 
 <script>
-	let flag = true  // 允许加载的时候进行操作
 	
 	/**
 	 * 监听手机进入黑屏或进入后台操作
 	 */
 	window.addEventListener("visibilitychange", function () {
-		//  如果回到前台发送请求重新获取签到时间
-		if (flag) {
-			return
-		}
 		if (document.visibilityState === "visible") {
-			//todo
-			
+			//todo 可见的
+		} else {
+			// todo 不可见的
 		}
+		
 	});
 </script>
 </body>
