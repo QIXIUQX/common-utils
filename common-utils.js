@@ -507,7 +507,13 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 	return formatStr
 }
 
-
+/**
+ * 获取当前时间戳
+ * @returns {number} 时间戳
+ */
+dateUtils.getTimeStamp = function () {
+	return new Date().getTime()
+}
 //storageUtils
 
 /**
@@ -628,3 +634,5 @@ domUtils.bottomVisible = function () {
 }
 
 // test 代码部分
+console.log(dateUtils.getTimeStamp());
+console.log(dateUtils.getCurrentDate());
