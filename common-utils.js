@@ -435,11 +435,15 @@ dateUtils.timeCalculation = function (timeStamp, postponeTime, fill0) {
 }
 
 /**
- * 获取当前时间
- * @returns {{}} 返回当前时间对象
+ * 获取当前时间对象  或者按照当前传入的格式化字符串格式化时间
+ * @param {string|void}formatStr
+ * @returns {String|Object} 返回当前时间对象 或者按照当前传入的格式化字符串格式化时间
  */
-dateUtils.getCurrentDate = function () {
-	return dateUtils.formatTimeStrOrTimeStampToObject(new Date(), true)
+dateUtils.getCurrentDate = function (formatStr) {
+	if (formatStr) {
+		return dateUtils.dateFormat(dateUtils.getTimeStamp(), formatStr)
+	}
+	return dateUtils.formatTimeStrOrTimeStampToObject(dateUtils.getTimeStamp(), true)
 }
 
 /**
@@ -636,3 +640,4 @@ domUtils.bottomVisible = function () {
 // test 代码部分
 console.log(dateUtils.getTimeStamp());
 console.log(dateUtils.getCurrentDate());
+console.log(dateUtils.getCurrentDate("yyyy-MM-dd hh:mm:ss"));
