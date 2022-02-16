@@ -1,18 +1,39 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  border: 0;
-  vertical-align: middle; }
+  box-sizing: border-box; }
 
-.button {
+.btn {
   margin-left: 10px;
   padding: 9px 40px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #FA851C;
   border-radius: 5px;
   cursor: pointer;
   white-space: nowrap;
   outline: none;
-  font-weight: 500; }
+  font-weight: 500;
+  border: 0px;
+  font-size: 16px; }
+
+.btn-primary {
+  color: #fff;
+  background-color: #409eff; }
+
+.btn-default {
+  color: #606266;
+  background-color: #fff;
+  border: 1px solid #dcdfe6; }
+
+.btn-success {
+  color: #fff;
+  background-color: #67c23a; }
+
+.btn-warning {
+  color: #fff;
+  background-color: #e6a23c; }
+
+.btn-danger {
+  color: #fff;
+  background-color: #f56c6c; }
+
+.is-round {
+  border-radius: 20px; }
