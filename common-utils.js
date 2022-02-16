@@ -277,6 +277,14 @@ commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
 }
 
+/**
+ * 检测dom 的可见性
+ * @returns {boolean} true 可见 false 不可见
+ */
+commonUtils.visibility = function () {
+	return document.visibilityState === "visible" ? true : false
+}
+
 //urlUtils
 
 /**
