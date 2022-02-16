@@ -282,7 +282,7 @@ commonUtils.checkVariableNull = function (val) {
  * @returns {boolean} true 可见 false 不可见
  */
 commonUtils.visibility = function () {
-	return document.visibilityState === "visible" ? true : false
+	return document.visibilityState === "visible"
 }
 
 //urlUtils
