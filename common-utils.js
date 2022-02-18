@@ -637,6 +637,13 @@ domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
 }
 
+domUtils.noDateEl = function (HTMLDOMElement, msg) {
+	if (!msg) {
+		msg = "暂无内容"
+	}
+	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
+}
+
 // test 代码部分
 console.log(dateUtils.getTimeStamp());
 console.log(dateUtils.getCurrentDate("yyyy-MM-dd hh:mm:ss"));
