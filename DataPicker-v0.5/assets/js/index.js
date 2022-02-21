@@ -88,7 +88,7 @@ function init() {
 
 /** 检查每次点击的地方是不是包含文本框或者是日历框 */
 function handleClickCheck() {
-	$(document).off().click(function (e) {
+	$(document).click(function (e) {
 		if (datePickerContainer.css("display") === 'none') {
 			return
 		}

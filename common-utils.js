@@ -628,7 +628,6 @@ domUtils.backTop = function () {
 	document.body.scrollTop = 0;
 	document.documentElement.scrollTop = 0;
 }
-
 /**
  * bottomVisible 检测页面是否滚动到底部，
  * @returns {boolean} 是否滚动到底部
@@ -636,10 +635,17 @@ domUtils.backTop = function () {
 domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
 }
-
-domUtils.noDateEl = function (HTMLDOMElement, msg) {
+/**
+ * 没有数据的时候向页面插入没有数据标签
+ * @param HTMLDOMElement 需要插入的元素（为空时传入： "" 即可）
+ * @param msg 需要插入的提示信息（可以为空）
+ */
+domUtils.appendNoDateEl = function (HTMLDOMElement, msg) {
 	if (!msg) {
 		msg = "暂无内容"
+	}
+	if (!HTMLDOMElement) {
+		return '<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>'
 	}
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
