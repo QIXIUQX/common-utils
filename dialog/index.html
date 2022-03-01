@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!--禁止移动端缩放-->
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=0, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<!--优先使用webkit内核渲染-->
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	<script src="./assets/js/index.js"></script>
+	<script src="./assets/js/1920screen_self-adaption.js"></script>
+	<link rel="stylesheet" href="./assets/scss/index.css"/>
+	<title>Document</title>
+</head>
+<body>
+<div class="x-dialog-mask">
+	<div class="x-dialog-wrap">
+		<div class="x-dialog-header">
+			<div class="x-dialog-title">指标说明</div>
+			<div class="x-dialog-close-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+				     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+				     class="feather feather-x">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</div>
+		</div>
+		<div class="x-dialog-body">
+			<div class="indicator-calculation-formula-desc">
+				<div class="desc-title">指标计算公式说明</div>
+				<p><span>【本周人均考级本数】：</span>本周人均考级本数=全校总考级次数/全校总人数</p>
+				<p><span>【本周考级次数】：</span>本周考级次数=全校师生考级次数求和</p>
+				<p><span>【本周考级任务发布数】：</span>本周考级任务发布数=本校教师发布的考级任务次数求和(任务数量)</p>
+				<p><span>【本周考级综合正确率】：</span>本周考级综合正确率=(校平均任务考级正确率+校平均自主考级正确率)/2</p>
+				<p><span>【本周考级综合参与率】：</span>本周考级综合参与率=(校平均任务考级参与率+校平均自主考级参与率)/2</p>
+				<p><span>【本周阅读才艺上传数】：</span>本周各项阅读才艺上传数量求和</p>
+			</div>
+			<div class="indicator-reference-use">
+				<div class="desc-title">指标参考用途</div>
+				<p><span>【考级本数】：本参数记录原则为考级通过后即可加1，一般可用来评估本校当前阅读氛围，通常来说，考级本数越高，孩子们的对于本软件的使用频率就越高。</span></p>
+				<p><span>【人均考级本数】：本参数记录原则为考级本数/考级人数，一般可用来评估本校学生的阅读素质以及阅读技能掌握情况，通常来说，人均本数越高，孩子们的阅读素养就越高。</span></p>
+				<p><span>【任务次数】：</span></p>
+				<p><span>【正确率】：</span></p>
+				<p><span>【参与率】：</span></p>
+				<p><span>【自主考级】：</span></p>
+				<p><span>【任务考级】：</span></p>
+				<p><span>【才艺上传】：</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

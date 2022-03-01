@@ -1,0 +1,89 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  font-size: 0.16rem;
+  color: #333; }
+
+.x-dialog-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.2); }
+  .x-dialog-mask .x-dialog-wrap {
+    border-radius: 0.05rem;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -70%);
+    width: 8rem;
+    height: max-content;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+    .x-dialog-mask .x-dialog-wrap .x-dialog-header {
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      background-color: #FFBD39; }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-header .x-dialog-title {
+        padding: 0.1rem 0;
+        font-size: 0.2rem;
+        text-align: center;
+        color: #fff;
+        font-weight: 500; }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-header .x-dialog-close-btn {
+        position: absolute;
+        right: 0.15rem;
+        top: 0.05rem;
+        color: #fff;
+        cursor: pointer;
+        width: 0.26rem;
+        height: 0.26rem;
+        transition: all 0.3s ease; }
+        .x-dialog-mask .x-dialog-wrap .x-dialog-header .x-dialog-close-btn svg {
+          width: 0.26rem;
+          height: 0.26rem; }
+          .x-dialog-mask .x-dialog-wrap .x-dialog-header .x-dialog-close-btn svg:hover {
+            color: #fff; }
+    .x-dialog-mask .x-dialog-wrap .x-dialog-body {
+      padding: 0.11rem;
+      min-height: 3rem;
+      max-height: 4rem;
+      overflow-y: hidden;
+      /*正常情况下滑块的样式*/ }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-body:hover {
+        overflow-y: scroll;
+        padding-right: 0.05rem; }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-body::-webkit-scrollbar {
+        width: 0.06rem;
+        height: 0.01rem;
+        border-radius: 0.06rem;
+        background-color: rgba(87, 186, 232, 0.1); }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-body::-webkit-scrollbar-thumb {
+        border-radius: 0.1rem;
+        background-color: rgba(252, 177, 79, 0.5); }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-calculation-formula-desc, .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-reference-use {
+        padding: 0.1rem;
+        width: 100%;
+        border-radius: 0.05rem;
+        border: 0.01rem solid #888; }
+        .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-calculation-formula-desc .desc-title, .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-reference-use .desc-title {
+          padding: 0.05rem 0;
+          text-align: center;
+          font-weight: 700;
+          font-size: 0.18rem; }
+        .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-calculation-formula-desc p span, .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-reference-use p span {
+          font-weight: 700; }
+      .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-reference-use {
+        margin-top: 0.2rem; }
+        .x-dialog-mask .x-dialog-wrap .x-dialog-body .indicator-reference-use p span {
+          font-weight: 700; }

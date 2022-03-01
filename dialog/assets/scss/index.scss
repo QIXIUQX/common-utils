@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 0.16rem;
+    color: #333;
+}
+
+.x-dialog-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, .2);
+
+    .x-dialog-wrap {
+        border-radius: 0.05rem;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -70%);
+        width: 8rem;
+        height: max-content;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+        .x-dialog-header {
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            background-color: #FFBD39;
+
+            .x-dialog-title {
+                padding: 0.1rem 0;
+                font-size: 0.2rem;
+                text-align: center;
+                color: #fff;
+                font-weight: 500;
+            }
+
+            .x-dialog-close-btn {
+                position: absolute;
+                right: 0.15rem;
+                top: 0.05rem;
+                //color: #93969c;
+                color: #fff;
+                cursor: pointer;
+                width: 0.26rem;
+                height: 0.26rem;
+                transition: all 0.3s ease;
+
+                svg {
+                    width: 0.26rem;
+                    height: 0.26rem;
+
+                    &:hover {
+                        //color: #4da4ff;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .x-dialog-body {
+            padding: 0.11rem;
+            min-height: 3rem;
+            max-height: 4rem;
+            overflow-y: hidden;
+
+            &:hover {
+                overflow-y: scroll;
+                padding-right: 0.05rem;
+            }
+
+            &::-webkit-scrollbar {
+                width: 0.06rem;
+                height: 0.01rem;
+                border-radius: 0.06rem;
+                background-color: rgba(87, 186, 232, .1);
+            }
+
+            /*正常情况下滑块的样式*/
+            &::-webkit-scrollbar-thumb {
+                border-radius: 0.1rem;
+                background-color: rgba(252, 177, 79, 0.5);
+            }
+
+            .indicator-calculation-formula-desc, .indicator-reference-use {
+                padding: 0.1rem;
+                width: 100%;
+                border-radius: 0.05rem;
+                border: 0.01rem solid #888;
+                .desc-title{
+                    padding: 0.05rem 0;
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 0.18rem;
+                }
+
+                p {
+                    span {
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .indicator-reference-use {
+                margin-top: 0.2rem;
+
+                p {
+                    span {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
+
