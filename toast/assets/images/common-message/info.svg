@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+    <defs>
+        <style>.info-1{fill:#909399;}.info-2{isolation:isolate;}.info-3{fill:#fff;}</style>
+    </defs>
+    <g id="info_2" data-name="info 2">
+        <g id="info_1-2" data-name="info 1">
+            <circle id="oval_52" data-name="oval 52" class="info-1" cx="6" cy="6" r="6"/>
+            <g id="_2" data-name=" 2" class="info-2">
+                <g class="info-2">
+                    <path class="info-3"
+                          d="M6.67,3.38A.68.68,0,0,1,6,4.09a.69.69,0,0,1-.68-.71A.67.67,0,0,1,6,2.68.66.66,0,0,1,6.67,3.38ZM6.48,8.29l0,1h-1l0-1,.14-3.46h.67Z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

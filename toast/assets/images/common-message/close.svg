@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+    <defs>
+        <style>.error-1{fill:#f56c6c;}.error-2{fill:#fff;}</style>
+    </defs>
+    <g id="error_2" data-name="error 2">
+        <g id="error_1-2" data-name="error 1">
+            <circle id="oval_50" data-name="oval 50" class="error-1" cx="6" cy="6" r="6"/>
+            <path class="error-2"
+                  d="M6.71,6.14,8.52,4.32a.5.5,0,0,0,0-.7.5.5,0,0,0-.71,0L6,5.43,4.19,3.62a.5.5,0,0,0-.71,0,.48.48,0,0,0,0,.7L5.29,6.14,3.48,8a.5.5,0,0,0,0,.71.52.52,0,0,0,.35.14.54.54,0,0,0,.36-.14L6,6.84,7.81,8.66a.52.52,0,0,0,.71,0,.51.51,0,0,0,0-.71Z"/>
+        </g>
+    </g>
+</svg>

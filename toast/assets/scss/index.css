@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0; }
+
+body {
+  font-size: 16px;
+  font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, STHeiTi, sans-serif; }
+
+a {
+  text-decoration: none; }
+
+ul, ol, li {
+  list-style: none; }
+
+img {
+  vertical-align: middle; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.x-message-wrapper {
+  position: fixed;
+  z-index: -9999;
+  width: 100%; }
+  .x-message-wrapper .x-message-container-success {
+    background-color: #f0f9eb;
+    border: 1px solid #e1f3d8; }
+    .x-message-wrapper .x-message-container-success .x-message-txt {
+      color: #67c23a; }
+    .x-message-wrapper .x-message-container-success .x-message-icon-success {
+      background-image: url(../images/common-message/success.svg); }
+  .x-message-wrapper .x-message-container-info {
+    background-color: #edf2fc;
+    border: 1px solid #ebeef5; }
+    .x-message-wrapper .x-message-container-info .x-message-txt {
+      color: #909399; }
+    .x-message-wrapper .x-message-container-info .x-message-icon-info {
+      background-image: url(../images/common-message/info.svg); }
+  .x-message-wrapper .x-message-container-warning {
+    background-color: #fdf6ec;
+    border: 1px solid #faecd8; }
+    .x-message-wrapper .x-message-container-warning .x-message-txt {
+      color: #e6a23c; }
+    .x-message-wrapper .x-message-container-warning .x-message-icon-warning {
+      background-image: url(../images/common-message/wraning.svg); }
+  .x-message-wrapper .x-message-container-error {
+    background-color: #fdf6ec;
+    border: 1px solid #fde6e6; }
+    .x-message-wrapper .x-message-container-error .x-message-txt {
+      color: #f56c6c; }
+    .x-message-wrapper .x-message-container-error .x-message-icon-error {
+      background-image: url(../images/common-message/close.svg); }
+  .x-message-wrapper .x-message-container {
+    position: absolute;
+    float: left;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 380px;
+    min-height: 54px;
+    max-height: max-content;
+    padding: 15px;
+    display: flex;
+    z-index: 9999;
+    border-radius: 4px; }
+    .x-message-wrapper .x-message-container .x-message-icon {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px; }
+    .x-message-wrapper .x-message-container .x-message-txt {
+      flex: 1; }
+    .x-message-wrapper .x-message-container .x-message-close-btn {
+      margin-left: 10px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer; }

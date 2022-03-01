@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+    <defs>
+        <style>.success-1{fill:#66c23a;}.success-2{fill:#fff;}</style>
+    </defs>
+    <g id="success_2" data-name="success 2">
+        <g id="success_1-2" data-name="success 1">
+            <circle id="oval_51" data-name="oval 51" class="success-1" cx="6" cy="6" r="6"/>
+            <g id="path_269" data-name="path 269">
+                <path class="success-2"
+                      d="M5.27,8.58a.47.47,0,0,1-.35-.15L2.64,6.16a.5.5,0,0,1,0-.7.5.5,0,0,1,.71,0L5.27,7.37,8.65,4a.49.49,0,1,1,.7.7L5.62,8.43A.47.47,0,0,1,5.27,8.58Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

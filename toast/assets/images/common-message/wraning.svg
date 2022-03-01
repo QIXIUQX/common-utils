@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+    <defs>
+        <style>.warning-1{fill:#e6a23c;}.warning-2{isolation:isolate;}.warning-3{fill:#fff;}</style>
+    </defs>
+    <g id="warning_2" data-name="warning 2">
+        <g id="warning_1-2" data-name="warning 1">
+            <circle id="oval_49" data-name="oval 49" class="warning-1" cx="6" cy="6" r="6"/>
+            <g id="_" data-name=" " class="warning-2">
+                <g class="warning-2">
+                    <path class="warning-3"
+                          d="M5.33,8.62A.68.68,0,0,1,6,7.91a.69.69,0,0,1,.68.71.67.67,0,0,1-.68.7A.66.66,0,0,1,5.33,8.62Zm.19-4.91,0-1h1l0,1L6.33,7.17H5.66Z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
