@@ -277,6 +277,16 @@ commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
 }
 
+/**
+ * 字符串截取
+ * @param str 需要截取的字符串，传入的将会自动转换为String。
+ * @param startNum 开始位置
+ * @param endNum 结束位置
+ * @returns {string} 返回截取的子发出
+ */
+commonUtils.subStr = function (str, startNum, endNum) {
+	return "" + str + "".toString().substr(startNum, endNum)
+}
 //urlUtils
 
 /**
