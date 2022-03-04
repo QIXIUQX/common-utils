@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!--<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.0/jquery.js"></script>-->
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts.js"></script>
+	<script src="../jquery-1.11.0.min.js"></script>
+	<title>Document</title>
+	<style>
+		.box {
+		
+		}
+	</style>
+</head>
+<body>
+<div class="box" id="container1" style="width:600px;height:350px;overflow:hidden;margin: 0 auto;">
+
+</div>
+
+
+<script>
+	$(function () {
+		//折线图
+		Highcharts.chart('container1', {
+			//图表基础配置
+			chart: {
+				type: "line"//图表类型
+				, zoomType: "x" //沿着X轴缩放
+				, backgroundColor: "rgba(0,0,0,.5)" //整体 图表背景颜色
+				// , animation: {  //动画  animation：false
+				// 	duration: 1500000, //延迟
+				// 	easing: 'easeOutBounce'
+				// }
+				, animation: false//动画
+				, borderColor: '#EBBA95' //边框颜色
+				, borderRadius: 20 //边框圆角
+				, borderWidth: 2 //边框大小
+				// , margin: [0, 0, 0, 0]  //图表距边框的位置 上右下左
+				, plotBackgroundColor: "red" //设置绘图区域的背景颜色
+				, style: {
+					fontFamily: 'serif' //字体
+				}
+				, polar: true  // 当设置为 true 时，直线图、曲线图、面积图、柱状图等笛卡尔图会转成极地图。详情见https://api.highcharts.com.cn/legacy#chart.polar
+				
+			},
+			//图表默认颜色配置
+			colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'], //默认颜色
+			//版权信息
+			credits: {
+				enabled: true //显示 true 不显示 false
+				, text: 'HCharts.cn'  //显示的版权信息标题
+				, href: '' //需要跳转的链接
+				, position: { //位置
+					align: 'left', //左侧
+					x: 10
+				}
+			},
+			legend: {
+				align: 'center', // 设定图例在图表区中的水平对齐方式，合法值有left，center 和 right。
+				backgroundColor: '#FCFFC5', //图例背景色
+				borderColor: "#fff", // 图例的边框颜色。 默认是：#999999.
+				borderRadius: 0, //图例的边框圆角。 默认是：0.
+				borderWidth: 0,  //图例的边框宽度。 默认是：0.
+				enabled: true, //图例开关。 默认是：true.
+				itemDistance: 50, //当图例容器中的图例是水平布局时，这个属性定义了它们之间的距离，单位为像素。 默认是：20.
+				itemHoverStyle: { //当鼠标悬停在图例项上时，图例项样式可发生改变。此时，此配置用来实现对相应图例项的CSS样式设定。只支持有关文本的CSS样式设定。样式属性继承并覆盖 style中的设定。 默认是：{ "color": "#000000" }.
+					color: '#FF0000'
+				},
+				itemStyle: { //设定图例项的CSS样式。只支持有关文本的CSS样式设定。
+					color: '#000000',
+					fontWeight: 'bold'
+				},
+				itemWidth: 10, //设定每个图例项的宽度。当图例有很多图例项，并且用户想要这些图例项在同一平面内垂直对齐，此时这个属性可帮用户实现此效果。
+				labelFormatter: function () { //每个图例标签的 标签及字符串格式化，可用的变量包括数据列的属性或是饼图中数据点属性。 默认是：{name}.
+					return this.name + ' (click to hide)';
+				},
+				layout: 'vertical', //图例数据项的布局。布局类型： "horizontal" 或 "vertical" 即水平布局和垂直布局 默认是：horizontal.
+				margin: 50, //设定整个图例区的外边距。如果整个图型区的大小是自动计算得出并且图例不浮动，那么图例边距的空间是指整个图例与坐标轴标签或者图形区之间的距离。 默认是：12.
+				squareSymbol: false, //当此设定为true时，图例标志的长、宽将相等。长、宽尺寸默认与图例项字体大小一致。 默认是：true.
+				symbolHeight: 12, // 图例高度宽度 通过他可以修改图例类型
+				symbolWidth: 12, // 图例高度宽度
+				symbolRadius: 0,  //圆角
+				verticalAlign: 'middle', // 设定图例在图表区中的垂直对齐方式，合法值有 top，middle 和 bottom。垂直位置可以通过 y 选项做进一步设定。
+				floating: true, // 当图例浮动时，绘图区域将忽略它，并允许将其放置在图例下方。‎
+				title: {
+					text: 'City<br/><span style="font-size: 9px; color: #666; font-weight: normal">(Click to hide)</span>', 文字
+					style: {
+						fontStyle: 'italic'
+					}
+				},
+			},
+			//标题
+			title: {
+				text: '主标题',
+				x: 15, //设置x，y值来控制显示的位置
+				y: 10,
+				style: {
+					// color: "#00DCFE",//标题颜色
+					fontSize: 5 //大小
+				}
+			},
+			//子标题
+			subtitle: {
+				text: '子标题',
+				// x:"15px", //设置x，y值来控制显示的位置
+				// y:-70,
+				style: {
+					// color: "#00DCFE",//标题颜色
+					fontSize: "12px" //大小
+				}
+			},
+			//x轴内容
+			xAxis: {
+				categories: [
+					"一月",
+					"二月",
+					"三月",
+					"四月",
+					"五月",
+					"六月",
+					"七月",
+					"八月",
+					"九月",
+					"十月",
+					"十一月",
+					"十二月",
+					"123"
+				],
+				labels: {
+					formatter: function () {
+						return this.value;
+					},
+					style: {
+						color: "#fff"
+					}
+				}
+			},
+			//y轴提示文字
+			yAxis: {
+				title: {
+					text: 'Y轴提示文字',
+					// x:"15px", //设置x，y值来控制显示的位置
+					y: -70
+				}
+			},
+			
+			plotOptions: {
+				series: {
+					label: {
+						// connectorAllowed: false
+					}
+					// pointStart: 2010
+				}
+			},
+			series: [{
+				name: "借阅",
+				color: "#54DDFF",
+				data: [
+					21, 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9,
+					9.6
+				]
+			},
+				{
+					name: "归还",
+					color: "#6779FF",
+					data: [
+						23, 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8,
+					]
+				},],
+			responsive: {
+				rules: [{
+					condition: {
+						maxWidth: 500
+					},
+					chartOptions: {
+						legend: {
+							layout: 'horizontal',
+							align: 'center',
+							verticalAlign: 'bottom'
+						}
+					}
+				}]
+			}
+		});
+	})
+</script>
+</body>
+</html>
