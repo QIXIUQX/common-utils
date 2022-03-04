@@ -635,21 +635,23 @@ domUtils.backTop = function () {
 domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
 }
+
 /**
- * 没有数据的时候向页面插入没有数据标签
+ *没有数据的时候向页面插入没有数据标签
  * @param HTMLDOMElement 需要插入的元素（为空时传入： "" 即可）
  * @param msg 需要插入的提示信息（可以为空）
+ * @returns {string} 如果没有dom元素的情况下，将返回拼接好的字符串
  */
-domUtils.appendNoDateEl = function (HTMLDOMElement, msg) {
+domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 	if (!msg) {
 		msg = "暂无内容"
 	}
 	if (!HTMLDOMElement) {
-		return '<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>'
+		 throw new Error("添加失败，未传入HTMLDOMElement")
 	}
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
 
 // test 代码部分
-console.log(dateUtils.getTimeStamp());
-console.log(dateUtils.getCurrentDate("yyyy-MM-dd hh:mm:ss"));
+
+console.log(domUtils.appendNoDataEl());
