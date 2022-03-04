@@ -640,7 +640,7 @@ domUtils.bottomVisible = function () {
 }
 
 /**
- * 检测dom 的可见性
+ * 检测dom(整个页面的可见性) 的可见性
  * @returns {boolean} true 可见 false 不可见
  */
 domUtils.visibility = function () {
