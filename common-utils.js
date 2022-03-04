@@ -277,14 +277,6 @@ commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
 }
 
-/**
- * 检测dom 的可见性
- * @returns {boolean} true 可见 false 不可见
- */
-commonUtils.visibility = function () {
-	return document.visibilityState === "visible"
-}
-
 //urlUtils
 
 /**
@@ -628,12 +620,21 @@ domUtils.backTop = function () {
 	document.body.scrollTop = 0;
 	document.documentElement.scrollTop = 0;
 }
+
 /**
  * bottomVisible 检测页面是否滚动到底部，
  * @returns {boolean} 是否滚动到底部
  */
 domUtils.bottomVisible = function () {
 	return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
+}
+
+/**
+ * 检测dom 的可见性
+ * @returns {boolean} true 可见 false 不可见
+ */
+domUtils.visibility = function () {
+	return document.visibilityState === "visible"
 }
 
 /**
@@ -647,7 +648,7 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 		msg = "暂无内容"
 	}
 	if (!HTMLDOMElement) {
-		 throw new Error("添加失败，未传入HTMLDOMElement")
+		throw new Error("添加失败，未传入HTMLDOMElement")
 	}
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
