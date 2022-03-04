@@ -279,13 +279,13 @@ commonUtils.checkVariableNull = function (val) {
 
 /**
  * 字符串截取
- * @param str 需要截取的字符串，传入的将会自动转换为String。
- * @param startNum 开始位置
- * @param endNum 结束位置
+ * @param {String} str 需要截取的字符串，传入的将会自动转换为String。
+ * @param {Number} startNum 开始位置
+ * @param {Number} length 结束位置
  * @returns {string} 返回截取的子发出
  */
-commonUtils.subStr = function (str, startNum, endNum) {
-	return "" + str + "".toString().substr(startNum, endNum)
+commonUtils.subStr = function (str, startNum, length) {
+	return ("" + str + "").toString().substr(startNum, length)
 }
 //urlUtils
 
@@ -665,4 +665,5 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 
 // test 代码部分
 
-console.log(domUtils.appendNoDataEl());
+// console.log(domUtils.appendNoDataEl());
+console.log(commonUtils.subStr(12312312312, 0, 3));
