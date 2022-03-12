@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.x-input-inner {
+    width: 180px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 14px;
+    outline: none;
+    border-radius: 5px;
+    color: #606264;
+    border: 1px solid #dcdfe6;
+    transition: all 0.2s ease;
+
+    &:focus {
+        border: 1px solid #53a8ff;
+    }
+
+    &::placeholder {
+        color: #c0c4cc;
+    }
+}
