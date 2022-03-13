@@ -664,6 +664,3 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 }
 
 // test 代码部分
-
-// console.log(domUtils.appendNoDataEl());
-console.log(commonUtils.subStr(12312312312, 0, 3));
