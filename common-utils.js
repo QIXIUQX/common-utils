@@ -287,6 +287,8 @@ commonUtils.checkVariableNull = function (val) {
 commonUtils.subStr = function (str, startNum, length) {
 	return ("" + str + "").toString().substr(startNum, length)
 }
+
+
 //urlUtils
 
 /**
@@ -663,7 +665,11 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
 
-// test 代码部分
 
+
+
+
+// test 代码部分
+console.log(commonUtils.checkArrIsNumber([1, 2, 3], 1));
 // console.log(domUtils.appendNoDataEl());
-console.log(commonUtils.subStr(12312312312, 0, 3));
+// console.log(commonUtils.subStr(12312312312, 0, 3));
