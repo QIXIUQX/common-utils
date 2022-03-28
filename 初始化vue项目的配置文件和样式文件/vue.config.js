@@ -36,6 +36,7 @@ module.exports = defineConfig({
 		loaderOptions: {
 			sass: {
 				//additionalData: `@import "@/assets/scss/_var.scss";`, 最新版需要改为这个
+				//npm install postcss-pxtorem --save-dev
 				additionalData: `
 				          @import "@/assets/scss/_var.scss";
 				          @import "@/assets/scss/mixin.scss";
