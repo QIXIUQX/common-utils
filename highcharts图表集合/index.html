@@ -11,6 +11,10 @@
 		.box {
 		
 		}
+		.highcharts-graph{
+			/*width: ;*/
+			background-color: red;
+		}
 	</style>
 </head>
 <body>
@@ -45,7 +49,7 @@
 				
 			},
 			//图表默认颜色配置
-			colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'], //默认颜色
+			colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
 			//版权信息
 			credits: {
 				enabled: true //显示 true 不显示 false
@@ -56,6 +60,7 @@
 					x: 10
 				}
 			},
+			//图例设置
 			legend: {
 				align: 'center', // 设定图例在图表区中的水平对齐方式，合法值有left，center 和 right。
 				backgroundColor: '#FCFFC5', //图例背景色
@@ -77,10 +82,10 @@
 				},
 				layout: 'vertical', //图例数据项的布局。布局类型： "horizontal" 或 "vertical" 即水平布局和垂直布局 默认是：horizontal.
 				margin: 50, //设定整个图例区的外边距。如果整个图型区的大小是自动计算得出并且图例不浮动，那么图例边距的空间是指整个图例与坐标轴标签或者图形区之间的距离。 默认是：12.
-				squareSymbol: false, //当此设定为true时，图例标志的长、宽将相等。长、宽尺寸默认与图例项字体大小一致。 默认是：true.
+				squareSymbol: true, //当此设定为true时，图例标志的长、宽将相等。长、宽尺寸默认与图例项字体大小一致。 默认是：true.
 				symbolHeight: 12, // 图例高度宽度 通过他可以修改图例类型
 				symbolWidth: 12, // 图例高度宽度
-				symbolRadius: 0,  //圆角
+				symbolRadius: 0,  //圆角 可以修改他的形状 比如原型还是方形
 				verticalAlign: 'middle', // 设定图例在图表区中的垂直对齐方式，合法值有 top，middle 和 bottom。垂直位置可以通过 y 选项做进一步设定。
 				floating: true, // 当图例浮动时，绘图区域将忽略它，并允许将其放置在图例下方。‎
 				title: {

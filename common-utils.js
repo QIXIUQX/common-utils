@@ -287,6 +287,24 @@ commonUtils.checkVariableNull = function (val) {
 commonUtils.subStr = function (str, startNum, length) {
 	return ("" + str + "").toString().substr(startNum, length)
 }
+
+/**
+ * 检测数组存在值
+ * 如果数组中存在值， 则删除该值，不存在则将值添加到数组中，最后返回数组
+ * @param array 需要操作的数组，
+ * @param num  需要添加或者删除的值
+ * @returns {*}  经过处理之后的数组
+ */
+commonUtils.checkArrayExistValue = function (array, num) {
+	let _index = array.indexOf(num)
+	if (_index !== -1) {
+		array.splice(_index, 1)
+	} else {
+		array.push(num)
+	}
+	return array
+}
+
 //urlUtils
 
 /**
@@ -513,6 +531,24 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 	return formatStr
 }
 
+
+/**
+ * 获取月份的最后一天
+ * @param timeStamp 需要获取的月份或者时间戳
+ * @param formatStr 格式化的字符串（想要返回的结果按照什么格式进行返回）
+ * @returns {*} 获取到的时间
+ */
+dateUtils.getMonthLastDay = function (timeStamp, formatStr) {
+	if (!formatStr) {
+		formatStr = "yyyy-MM-dd hh:mm:ss"
+	}
+	let _dateTimeStr = dateUtils.dateFormat(new Date(timeStamp), "yyyy-MM-dd hh:mm:ss")
+	let _date = dateUtils.formatTimeStrOrTimeStampToObject(_dateTimeStr, true)
+	let _day = new Date(_date.year, _date.month, 0).getDate()
+	let _tempDateTimeStr = "" + _date.year + "-" + _date.month + "-" + _day
+	return dateUtils.dateFormat(new Date(_tempDateTimeStr), formatStr)
+}
+
 /**
  * 获取当前时间戳
  * @returns {number} 时间戳
@@ -664,3 +700,5 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 }
 
 // test 代码部分
+
+
