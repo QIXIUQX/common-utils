@@ -1,3 +1,5 @@
+let erorFn = null
+
 /** 时间日期操作相关方法 */
 let dateUtils = {}
 /*** url操作相关方法 */
@@ -304,6 +306,19 @@ commonUtils.checkArrayExistValue = function (array, num) {
 	}
 	return array
 }
+
+/**
+ * 获取百分比
+ * @param value 需要转变的之
+ * @param fixed 保留几位小数  默认保留2位
+ * @returns {string}
+ */
+commonUtils.getPercentage = function (value, fixed) {
+	fixed = fixed ? fixed : 2
+	return (value * 100).toFixed(fixed)
+}
+
+
 
 //urlUtils
 
@@ -699,5 +714,31 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
 
-// test 代码部分
 
+function errorHandle(callback) {
+	try {
+		callback && callback()
+	} catch (e) {
+		erorFn ? erorFn() : console.error(e)
+
+	}
+}
+
+function catchError(fn) {
+	erorFn = fn
+}
+
+function test(fn) {
+	console.log("test run....")
+	errorHandle(fn)
+}
+
+function getDate() {
+	console.log("aaaaa")
+	test("123")
+	console.log("aaaaa")
+}
+
+getDate()
+
+// test 代码部分
