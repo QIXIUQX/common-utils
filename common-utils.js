@@ -1,4 +1,4 @@
-let erorFn = null
+let errorFn = null
 
 /** 时间日期操作相关方法 */
 let dateUtils = {}
@@ -14,6 +14,17 @@ let commonUtils = {}
 let domUtils = {}
 
 //commonUtils
+
+/**
+ * 字符串切割
+ * @param value 需要切割的字符串
+ * @param start 开始位置
+ * @param end 需要切几位
+ * @returns {string}  分割后的字符串
+ */
+commonUtils.strSlice = function (value, start, end) {
+	return value.toString().slice(start, end)
+}
 
 /**
  * 不足10的话前面补0
@@ -319,7 +330,6 @@ commonUtils.getPercentage = function (value, fixed) {
 }
 
 
-
 //urlUtils
 
 /**
@@ -568,7 +578,7 @@ dateUtils.getMonthLastDay = function (timeStamp, formatStr) {
  * 获取当前时间戳
  * @returns {number} 时间戳
  */
-dateUtils.getTimeStamp = function () {
+dateUtils.getCurrentTimeStamp = function () {
 	return new Date().getTime()
 }
 //storageUtils
@@ -719,13 +729,13 @@ function errorHandle(callback) {
 	try {
 		callback && callback()
 	} catch (e) {
-		erorFn ? erorFn() : console.error(e)
+		errorFn ? errorFn() : console.error(e)
 
 	}
 }
 
 function catchError(fn) {
-	erorFn = fn
+	errorFn = fn
 }
 
 function test(fn) {
@@ -739,6 +749,43 @@ function getDate() {
 	console.log("aaaaa")
 }
 
-getDate()
+// getDate()
 
-// test 代码部分
+/**
+ * 当前月份的上一个月
+ * @param dateTime
+ */
+function getLastMonth(dateTime) {
+	if (dateTime.month - 1 === 0) {
+		dateTime.month = 12
+		dateTime.year = dateTime.year - 1
+	} else {
+		dateTime.month = dateTime.month - 1
+	}
+	return dateTime
+}
+
+
+/**
+ * 获取开始月份到往前指定月份之间的每一个月数据
+ * @param startMonth 开始的年月日时间戳或者字符串
+ * @param length 长度,需要往前几个月就写长度
+ * @param containsCurrentMonth 是否包含当前月的数据
+ * @param formatStr 存储时候按照指定格式进行字符串格式化
+ */
+dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, formatStr) {
+	let _dateList = []
+	let _dateTimeObj = dateUtils.formatTimeStrOrTimeStampToObject(new Date(startMonth), true)
+	formatStr = formatStr ? formatStr : "yyyy年MM月"
+	if (!containsCurrentMonth) {
+		_dateTimeObj = getLastMonth(_dateTimeObj)
+	}
+	for (let i = 0; i < length; i++) {
+		let str = _dateTimeObj.year + "-" + _dateTimeObj.month + "-" + _dateTimeObj.day + " " + _dateTimeObj.hour + ":" + _dateTimeObj.minutes + ":" + _dateTimeObj.seconds
+		_dateList[_dateList.length] = dateUtils.dateFormat(str, formatStr)
+		_dateTimeObj = getLastMonth(_dateTimeObj)
+	}
+	return _dateList
+}
+
+console.log(dateUtils.getMonthList("2022-07-05 14:31:23", 33, false));
