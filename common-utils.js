@@ -788,4 +788,20 @@ dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, for
 	return _dateList
 }
 
-console.log(dateUtils.getMonthList("2022-07-05 14:31:23", 33, false));
+/**
+ * 获取指定月份的最后一天
+ * @returns {number} 最后一天的日期 如:2022-07-12 则返回:31
+ */
+commonUtils.getMonthLastDateFn = function getMonthLastDateFn(){
+	let dateStr = '2020-07-06'; //需要获取此月最后一天的日期
+	let dateObj = new Date(dateStr);
+	let nextMonth = dateObj.getMonth()+1; //0-11，下一个月
+	//设置当前日期为下个月的1号
+	dateObj.setMonth(nextMonth);
+	dateObj.setDate(1);  //1-31
+	let nextMonthFirstDayTime = dateObj.getTime(); //下个月一号对应毫秒
+	let theMonthLastDayTime = nextMonthFirstDayTime-24*60*60*1000;  //下个月一号减去一天，正好是这个月最后一天
+	let theMonthDay = (new Date(theMonthLastDayTime)).getDate();
+	return theMonthDay;
+}
+
