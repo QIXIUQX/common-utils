@@ -801,7 +801,6 @@ commonUtils.getMonthLastDateFn = function getMonthLastDateFn(){
 	dateObj.setDate(1);  //1-31
 	let nextMonthFirstDayTime = dateObj.getTime(); //下个月一号对应毫秒
 	let theMonthLastDayTime = nextMonthFirstDayTime-24*60*60*1000;  //下个月一号减去一天，正好是这个月最后一天
-	let theMonthDay = (new Date(theMonthLastDayTime)).getDate();
-	return theMonthDay;
+	return  (new Date(theMonthLastDayTime)).getDate();
 }
 
