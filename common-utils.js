@@ -778,31 +778,3 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 	}
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
 }
-
-
-function errorHandle(callback) {
-	try {
-		callback && callback()
-	} catch (e) {
-		errorFn ? errorFn() : console.error(e)
-
-	}
-}
-
-function catchError(fn) {
-	errorFn = fn
-}
-
-function test(fn) {
-	console.log("test run....")
-	errorHandle(fn)
-}
-
-function getDate() {
-	console.log("aaaaa")
-	test("123")
-	console.log("aaaaa")
-}
-
-
-console.log(dateUtils.getMonthFirstDay("2022-07-07 12:32:12", ""))
