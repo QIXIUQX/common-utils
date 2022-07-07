@@ -13,7 +13,24 @@ let commonUtils = {}
 //dom 操作
 let domUtils = {}
 
-//commonUtils
+
+/**========================内部工具类 不提供给外部使用==============================*/
+/**
+ * 传入月份的上一个月
+ * @param dateTime
+ */
+function getLastMonth(dateTime) {
+	if (dateTime.month - 1 === 0) {
+		dateTime.month = 12
+		dateTime.year = dateTime.year - 1
+	} else {
+		dateTime.month = dateTime.month - 1
+	}
+	return dateTime
+}
+
+/**======================================================*/
+
 
 /**
  * 字符串切割
@@ -556,24 +573,6 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 	return formatStr
 }
 
-
-/**
- * 获取月份的最后一天
- * @param timeStamp 需要获取的月份或者时间戳
- * @param formatStr 格式化的字符串（想要返回的结果按照什么格式进行返回）
- * @returns {*} 获取到的时间
- */
-dateUtils.getMonthLastDay = function (timeStamp, formatStr) {
-	if (!formatStr) {
-		formatStr = "yyyy-MM-dd hh:mm:ss"
-	}
-	let _dateTimeStr = dateUtils.dateFormat(new Date(timeStamp), "yyyy-MM-dd hh:mm:ss")
-	let _date = dateUtils.formatTimeStrOrTimeStampToObject(_dateTimeStr, true)
-	let _day = new Date(_date.year, _date.month, 0).getDate()
-	let _tempDateTimeStr = "" + _date.year + "-" + _date.month + "-" + _day
-	return dateUtils.dateFormat(new Date(_tempDateTimeStr), formatStr)
-}
-
 /**
  * 获取当前时间戳
  * @returns {number} 时间戳
@@ -581,6 +580,62 @@ dateUtils.getMonthLastDay = function (timeStamp, formatStr) {
 dateUtils.getCurrentTimeStamp = function () {
 	return new Date().getTime()
 }
+
+/**
+ * 获取从指定月份开始的指定区间的月份集合,如开始时间为本月
+ * @param startMonth 开始的年月日时间戳或者字符串
+ * @param length 区间长度,需要往前几个月就写多少的长度,如往前四个月则写4
+ * @param containsCurrentMonth 是否包含当前月的数据
+ * @param formatStr 存储时候按照指定格式进行字符串格式化
+ */
+dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, formatStr) {
+	let _dateList = []
+	let _dateTimeObj = dateUtils.formatTimeStrOrTimeStampToObject(new Date(startMonth), true)
+	formatStr = formatStr ? formatStr : "yyyy年MM月"
+	if (!containsCurrentMonth) {
+		_dateTimeObj = getLastMonth(_dateTimeObj)
+	}
+	for (let i = 0; i < length; i++) {
+		let str = _dateTimeObj.year + "-" + _dateTimeObj.month + "-" + _dateTimeObj.day + " " + _dateTimeObj.hour + ":" + _dateTimeObj.minutes + ":" + _dateTimeObj.seconds
+		_dateList[_dateList.length] = dateUtils.dateFormat(str, formatStr)
+		_dateTimeObj = getLastMonth(_dateTimeObj)
+	}
+	return _dateList
+}
+
+/**
+ * 获取指定月份的最后一天
+ * @param dateTime 需要获取的年月日,支持字符串时间,时间戳等标准时间,如果只传入年月日则返回的时分秒为08:00:00
+ * @param formatStr 指定格式化的字符串 可以为空(默认将会以:yyyy-MM-dd hh:mm:ss进行格式化)
+ * @returns {string|*} 格式化之后的字符串
+ */
+dateUtils.getMonthLastDay = function (dateTime, formatStr) {
+	let _dateTimeStr
+	let date
+	let day
+	formatStr = formatStr ? formatStr : "yyyy-MM-dd hh:mm:ss"
+	_dateTimeStr = dateUtils.dateFormat(new Date(dateTime), "yyyy-MM-dd hh:mm:ss")
+	date = dateUtils.formatTimeStrOrTimeStampToObject(_dateTimeStr, true)
+	day = new Date(date.year, date.month, 0).getDate()
+	let tempDateTimeStr = "" + date.year + "-" + date.month + "-" + day + " " + date.hour + ":" + date.minutes + ":" + date.seconds
+	return dateUtils.dateFormat(new Date(tempDateTimeStr), formatStr)
+}
+
+/**
+ * 获取指定月份的第一天
+ * @param dateTime 时间字符串或者是时间戳,
+ * @param formatStr 格式化字符串,默认为 "yyyy-MM-dd hh:mm:ss"
+ * @returns {string|*} 按照指定格式返回时间字符串,如:2022-07-01 12:32:12
+ */
+dateUtils.getMonthFirstDay = function (dateTime, formatStr) {
+	formatStr = formatStr ? formatStr : "yyyy-MM-dd hh:mm:ss"
+	let _date = new Date(dateTime)
+	let dateTimeStr = ""
+	_date.setDate(1)
+	dateTimeStr = dateUtils.dateFormat(_date, formatStr)
+	return dateTimeStr
+}
+
 //storageUtils
 
 /**
@@ -749,58 +804,5 @@ function getDate() {
 	console.log("aaaaa")
 }
 
-// getDate()
 
-/**
- * 当前月份的上一个月
- * @param dateTime
- */
-function getLastMonth(dateTime) {
-	if (dateTime.month - 1 === 0) {
-		dateTime.month = 12
-		dateTime.year = dateTime.year - 1
-	} else {
-		dateTime.month = dateTime.month - 1
-	}
-	return dateTime
-}
-
-
-/**
- * 获取开始月份到往前指定月份之间的每一个月数据
- * @param startMonth 开始的年月日时间戳或者字符串
- * @param length 长度,需要往前几个月就写长度
- * @param containsCurrentMonth 是否包含当前月的数据
- * @param formatStr 存储时候按照指定格式进行字符串格式化
- */
-dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, formatStr) {
-	let _dateList = []
-	let _dateTimeObj = dateUtils.formatTimeStrOrTimeStampToObject(new Date(startMonth), true)
-	formatStr = formatStr ? formatStr : "yyyy年MM月"
-	if (!containsCurrentMonth) {
-		_dateTimeObj = getLastMonth(_dateTimeObj)
-	}
-	for (let i = 0; i < length; i++) {
-		let str = _dateTimeObj.year + "-" + _dateTimeObj.month + "-" + _dateTimeObj.day + " " + _dateTimeObj.hour + ":" + _dateTimeObj.minutes + ":" + _dateTimeObj.seconds
-		_dateList[_dateList.length] = dateUtils.dateFormat(str, formatStr)
-		_dateTimeObj = getLastMonth(_dateTimeObj)
-	}
-	return _dateList
-}
-
-/**
- * 获取指定月份的最后一天
- * @returns {number} 最后一天的日期 如:2022-07-12 则返回:31
- */
-commonUtils.getMonthLastDateFn = function getMonthLastDateFn(){
-	let dateStr = '2020-07-06'; //需要获取此月最后一天的日期
-	let dateObj = new Date(dateStr);
-	let nextMonth = dateObj.getMonth()+1; //0-11，下一个月
-	//设置当前日期为下个月的1号
-	dateObj.setMonth(nextMonth);
-	dateObj.setDate(1);  //1-31
-	let nextMonthFirstDayTime = dateObj.getTime(); //下个月一号对应毫秒
-	let theMonthLastDayTime = nextMonthFirstDayTime-24*60*60*1000;  //下个月一号减去一天，正好是这个月最后一天
-	return  (new Date(theMonthLastDayTime)).getDate();
-}
-
+console.log(dateUtils.getMonthFirstDay("2022-07-07 12:32:12", ""))
