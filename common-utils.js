@@ -17,7 +17,7 @@ let domUtils = {}
 /**========================内部工具类 不提供给外部使用==============================*/
 /**
  * 传入月份的上一个月
- * @param dateTime
+ * @param dateTime{Object|string} 字符串或者时间对象
  */
 function getLastMonth(dateTime) {
 	if (dateTime.month - 1 === 0) {
@@ -34,9 +34,9 @@ function getLastMonth(dateTime) {
 
 /**
  * 字符串切割
- * @param value 需要切割的字符串
- * @param start 开始位置
- * @param end 需要切几位
+ * @param value{String} 需要切割的字符串
+ * @param start{Number} 开始位置
+ * @param end{Number} 需要切几位
  * @returns {string}  分割后的字符串
  */
 commonUtils.strSlice = function (value, start, end) {
@@ -45,8 +45,8 @@ commonUtils.strSlice = function (value, start, end) {
 
 /**
  * 不足10的话前面补0
- * @param {Number} number
- * @returns {Number|string}
+ * @param {Number} number 需要处理的值
+ * @returns {Number|string} 处理完成和返回的值
  */
 commonUtils.fillWith0 = function (number) {
 	return number >= 10 ? number : "0" + number
@@ -321,9 +321,9 @@ commonUtils.subStr = function (str, startNum, length) {
 /**
  * 检测数组存在值
  * 如果数组中存在值， 则删除该值，不存在则将值添加到数组中，最后返回数组
- * @param array 需要操作的数组，
- * @param num  需要添加或者删除的值
- * @returns {*}  经过处理之后的数组
+ * @param array{Array} 需要操作的数组，
+ * @param num{Number}  需要添加或者删除的值
+ * @returns {Array}  经过处理之后的数组
  */
 commonUtils.checkArrayExistValue = function (array, num) {
 	let _index = array.indexOf(num)
@@ -336,15 +336,24 @@ commonUtils.checkArrayExistValue = function (array, num) {
 }
 
 /**
- * 获取百分比
- * @param value 需要转变的之
- * @param fixed 保留几位小数  默认保留2位
- * @returns {string}
+ *
+ * @param value
+ * @param fixed
+ * @returns {string} 拼接好的百分比
  */
-commonUtils.getPercentage = function (value, fixed) {
+
+/**
+ * 获取百分比
+ * @param {Number} value 需要转变的之
+ * @param {Number} fixed 保留几位小数  默认保留2位
+ * @param {Boolean} percentSign 是否拼接百分号
+ * @returns {string} 拼接好的字符串
+ */
+commonUtils.getPercentage = function (value, fixed, percentSign) {
 	fixed = fixed ? fixed : 2
-	return (value * 100).toFixed(fixed)
+	return (value * 100).toFixed(fixed) + percentSign ? "%" : ""
 }
+console.log(commonUtils.getPercentage(0.9456, 2, true));
 
 
 //urlUtils
