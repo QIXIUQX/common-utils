@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/**
+字体相关
+*/
+/**
+背景颜色相关
+*/
+/**
+特殊设置
+*/
+body {
+  font-size: 16px;
+  font-family: -apple-system, Microsoft YaHei, Trebuchet MS, Calibri, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, sans-serif; }
+
+.container {
+  width: 100%;
+  margin: 0 auto; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0; }
+
+body {
+  font-size: 16px;
+  font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Helvetica, STHeiTi, sans-serif; }
+
+a {
+  text-decoration: none; }
+
+ul, ol, li {
+  list-style: none; }
+
+img {
+  vertical-align: middle; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
