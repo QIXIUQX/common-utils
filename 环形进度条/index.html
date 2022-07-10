@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.0/dist/jquery.min.js"></script>
+	
+	<style>
+	</style>
+</head>
+<body>
+<div class="container">
+	<!--width 宽高 viewBox渲染区域-->
+	<!--<svg width="200px" height="200px" viewBox="0 0 100 100">-->
+	<!--	<circle r="50" cx="50" cy="50" fill="transparent"-->
+	<!--	        style="stroke-width: 10px;stroke: rgba(0, 0, 0,0.5);transform-origin: center;transform: scale(0.9)">-->
+	<!--	-->
+	<!--	</circle>-->
+	<!--	<circle r="50" cx="50" cy="50" fill="transparent"-->
+	<!--	        style="stroke-width: 10px;stroke: rgba(0, 255, 255,1.0);transform-origin: center;transform:rotate(-90deg) scale(0.9)"-->
+	<!--	        stroke-dasharray="314"-->
+	<!--	        stroke-dashoffset="1"-->
+	<!--	></circle>-->
+	<!--</svg>-->
+</div>
+<script>
+	var progressBarOptions = {
+		el: ".container", // 需要加入到哪一个元素
+		size: 120, // 进度条大小
+		percentage: 0.5 // 百分比
+	}
+	progressBar("123", progressBarOptions)
+	
+	
+	/**
+	 * 使用svg 实现环形进度条
+	 * @param options 配置参数
+	 */
+	function progressBar(element, options) {
+		var opts = {
+			r: 50, //半径
+			size: 100, // 进度条大小
+			scale: 0.86, // 控制环形在svg标签中的缩放
+			progressBarBackgroundColor: "#CBF8EF", // 进度条北京颜色
+			progressBarColor: "#14C185", //进度条颜色
+			progressBarStyle: "round",
+			dashoffset: 0,  // 走过的长度
+			percentage: 0, // 百分比（0-1之间）
+			strokeWidth: 15 // 环形的粗细
+		}
+		opts.dashArray = Math.PI * 2 * opts.r // 总长度
+		
+		//合并两个对象
+		Object.assign(opts, options)
+		
+		// 环形图
+		var ringDiagramStr =
+				'<svg width="' + opts.size + '" height="' + opts.size + '" viewBox="0 0 100 100">' +
+				'	<circle r="' + opts.r + '" cx="50" cy="50" fill="transparent" style="stroke-width: ' + opts.strokeWidth + ';stroke: ' + opts.progressBarBackgroundColor + ';transform-origin: center;transform: scale(' + opts.scale + ')"></circle>' +
+				'	<circle r="' + opts.r + '" cx="50" cy="50" fill="transparent" style="stroke-width: ' + opts.strokeWidth + ';stroke: ' + opts.progressBarColor + ';transform-origin: center;transform:rotate(-90deg) scale(' + opts.scale + ')" stroke-dasharray="' + opts.dashArray + '" stroke-dashoffset="' + getDashOffset() + '" stroke-linecap="' + opts.progressBarStyle + '"></circle>' +
+				'</svg>'
+		$(opts.el).html(ringDiagramStr)
+		
+		/**
+		 * 控制环形图的百分比
+		 * @returns {String} 具体的数值
+		 */
+		function getDashOffset() {
+			return ((1 - opts.percentage) * opts.dashArray).toString()
+		}
+	}
+</script>
+</body>
+</html>
