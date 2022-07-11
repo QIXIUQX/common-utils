@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts.js"></script>
+	<script src="../jquery-1.11.0.min.js"></script>
+	<style>
+		.box {
+			background: rgba(132, 152, 203,.5);
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<div class="box" id="container1" style="width:600px;height:350px;overflow:hidden;margin: 0 auto;"></div>
+</div>
+<script>
+	$(function () {
+		Highcharts.chart('container1', {
+			chart: {
+				// type: 'line',
+				type: 'spline', //图例类型
+				backgroundColor: "rgba(255,255,255,.0)", //整体 图表背景颜色
+				style: { //字体信息配置
+					fontFamily: "",
+					fontSize: 12,
+					fontWeight: 'bold',
+					color: '#006cee',
+				},
+				plotBackgroundColor: "rgba(255, 171, 96,.05)" //设置绘图区域的背景颜色
+			},
+			colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'], //默认颜色
+			title: {
+				text: ''                 // 标题
+			},
+			subtitle: {
+				text: ""
+			},
+			//x轴
+			xAxis: {
+				categories: ['11.2', '12.31', '7.9', '8.5'], // x 轴分类
+				labels: {
+					formatter: function () {
+						return this.value;
+					},
+					style: { //x坐标颜色
+						color: "#595959",
+					},
+				},
+			},
+			//y轴
+			yAxis: {
+				title: {
+					text: '考级次数',               // y 轴标题
+					style: { // 字体颜色
+						color: "#595959"
+					},
+					align: "high"
+				},
+				labels: {
+					style: {
+						color: "#595959",
+					},
+				},
+				gridLineDashStyle: "Dot", // 网格线样式
+				min: 0,
+				minRange: 1
+			},
+			//图例
+			legend: {
+				enabled: true, //显示隐藏图例
+				layout: 'vertical',
+				align: 'center',
+				verticalAlign: 'bottom'
+			},
+			//数据列选项
+			plotOptions: {
+				spline: { // 显示数据标签，改为对应类型的
+					dataLabels: {
+						enabled: true, // 开启数据标签,
+					},
+					// 关闭鼠标跟踪，对应的提示框、点击事件会失效
+					enableMouseTracking: true,
+				}
+			},
+			//数据列
+			series: [
+				//	每一个项为一列
+				{
+					name: '生均阅读量', // 数据列名
+					data: [10, 20, 30, 20],                // 数据
+				}
+			],
+			// 禁用版权信息
+			credits: {
+				enabled: false // 禁用版权信息
+			},
+			tooltip: {},
+			exporting: {enabled: false}
+		});
+	})
+</script>
+</body>
+</html>

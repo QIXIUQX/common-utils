@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts.js"></script>
+	<script src="../jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div class="box" id="container1" style="width:600px;height:350px;overflow:hidden;margin: 0 auto;"></div>
+<script>
+	$(function () {
+		Highcharts.chart('container1', {
+			//图表配置
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false,
+				type: 'pie'
+			},
+			//标题
+			title: {
+				text: '2018年1月浏览器市场份额'
+			},
+			//提示框
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			//图例
+			legend: {
+				layout: 'horizontal',
+				align: 'center',
+				verticalAlign: 'bottom',
+			},
+			//数据列选项
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						innerSize: 60,
+						enabled: true,
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+						style: {
+							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+						}
+					}
+				}
+			},
+			//数据列
+			series: [{
+				name: 'Brands',
+				colorByPoint: true,
+				data: [{
+					name: 'Chrome',
+					y: 61.41,
+					sliced: true,
+					selected: true
+				}, {
+					name: 'Internet Explorer',
+					y: 11.84
+				}, {
+					name: 'Firefox',
+					y: 10.85
+				}, {
+					name: 'Edge',
+					y: 4.67
+				}, {
+					name: 'Safari',
+					y: 4.18
+				}, {
+					name: 'Sogou Explorer',
+					y: 1.64
+				}, {
+					name: 'Opera',
+					y: 1.6
+				}, {
+					name: 'QQ',
+					y: 1.2
+				}, {
+					name: 'Other',
+					y: 2.61
+				}]
+			}],
+			//导出
+			exporting: {
+				enabled: false // 是否显示导出按钮
+			},
+			//版权信息
+			credits: {
+				enabled: false //显示 true 不显示 false
+				, text: 'HCharts.cn'  //显示的版权信息标题
+				, href: '' //需要跳转的链接
+				, position: { //位置
+					align: 'left', //左侧
+					x: 10
+				}
+			}
+		});
+	})
+</script>
+</body>
+</html>

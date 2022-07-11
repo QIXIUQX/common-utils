@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts.js"></script>
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts-more.js"></script>
+	<script src="../jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div class="box" id="container1" style="width:600px;height:350px;overflow:hidden;margin: 0 auto;"></div>
+<script>
+	$(function () {
+		Highcharts.chart('container1', {
+			chart: {
+				polar: true,
+				type: 'line'
+			},
+			title: {
+				text: ''
+				// x: -80
+			},
+			pane: {
+				size: '70%'
+			},
+			xAxis: {
+				// categories: categoryList,
+				// categories: ['运用', '检索', '评测', '创新','理解'],
+				tickmarkPlacement: 'on',
+				lineWidth: 0
+			},
+			yAxis: {
+				gridLineInterpolation: 'polygon',
+				lineWidth: 0,
+				min: 0
+			},
+			//图表默认颜色配置
+			colors: ['rgba(5, 141, 199,.2)', 'rgba(80, 180, 50,.2)'],
+			tooltip: {
+				shared: true,
+				pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+			},
+			legend: {
+				layout: 'horizontal',
+				align: 'center',
+				verticalAlign: 'bottom'
+			},
+			plotOptions: {
+				area: {
+					dataLabels: {
+						// 开启数据标签
+						enabled: true
+					},
+					// 关闭鼠标跟踪，对应的提示框、点击事件会失效
+					enableMouseTracking: true
+				}
+			},
+			series: [{
+				name: '每月一测',
+				data: [1, 2, 3, 4, 5],
+				// data: data,
+				// pointPlacement: 'on',
+				type: 'area', // 设置渲染为一个图表而不是线条
+			},
+				{
+					name: '每月一测',
+					data: [5, 4, 3, 2, 1],
+					// data: data,
+					// pointPlacement: 'on',
+					type: 'area', // 设置渲染为一个图表而不是线条
+				}],
+			exporting: {enabled: false},
+			credits: {
+				enabled: false // 禁用版权信息
+			},
+		});
+	})
+</script>
+</body>
+</html>

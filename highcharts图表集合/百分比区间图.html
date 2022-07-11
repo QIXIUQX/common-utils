@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="http://cdn.highcharts.com.cn/highcharts/9.3.2/highcharts.js"></script>
+	<script src="../jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div class="box" id="container1" style="width:600px;height:350px;overflow:hidden;margin: 0 auto;"></div>
+<script>
+	$(function () {
+		Highcharts.chart('container1', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['2020-02', '2020-04', '2020-02-04', '2020-02-04', '2020-02-04']
+			},
+			yAxis: {
+				min: 0,
+				gridLineDashStyle: "Dot",
+				title: {
+					text: ''
+				},
+				labels: {//y轴刻度文字标签
+					formatter: function () {
+						return this.value.toFixed(2) + '%';//y轴加上%
+					}
+				},
+				
+			},
+			tooltip: {
+				pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b>' +
+						'({point.percentage:.0f}%)<br/>',
+				//:.0f 表示保留 0 位小数，详见教程：https://www.hcharts.cn/docs/basic-labels-string-formatting
+				shared: true
+			},
+			legend: {
+				enabled: true, //显示隐藏图例
+				layout: 'horizontal',
+				align: 'center',
+				verticalAlign: 'bottom'
+			},
+			plotOptions: {
+				column: {
+					stacking: 'percent',
+					spline: {
+						dataLabels: {
+							// 开启数据标签
+							enabled: true,
+							style: {// 数据标签颜色
+								color: '#595959'
+							}
+						},
+						// 关闭鼠标跟踪，对应的提示框、点击事件会失效
+						enableMouseTracking: true
+					}
+				}
+			},
+			series: [{
+				name: '小张',
+				data: [5, 3, 4, 7, 2]
+			}, {
+				name: '小彭',
+				data: [2, 2, 3, 2, 1]
+			}, {
+				name: '小潘',
+				data: [3, 4, 4, 2, 5]
+			}],
+			credits: {
+				enabled: false // 禁用版权信息
+			},
+			exporting: {enabled: false}
+		});
+	})
+</script>
+</body>
+</html>
