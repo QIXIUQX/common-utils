@@ -135,37 +135,28 @@
 			//y轴提示文字
 			yAxis: {
 				title: {
-					text: 'Y轴提示文字',
-					// x:"15px", //设置x，y值来控制显示的位置
-					y: -70
+					align: 'high', //坐标轴对齐方式（相对于坐标轴的值），可用的值有 "low"，"middle" 和 "high"，分别表示于最小值对齐、居中对齐、与最大值对齐。 默认是：middle.
+					offset: -55, //坐标轴标题相对于轴线的偏移量。默认的偏移量是根据坐标轴标签、轴线、标题的外边距动态计算的，当设置了本参数，将覆盖这些行为（动态计算行为）。
+					text: 'Y</br>轴</br>提</br>示</br>文</br>字</br>', // 提示文字
+					rotation: 0, //旋转角度
+					x :0, //水平偏移
+					y: -10,  // 垂直偏移
+					style: {
+						color: 'red'
+					}
 				}
 			},
 			//数据提示框
 			tooltip: {
-				
-				backgroundColor: '#FCFFC5',   // 背景颜色
-				borderColor: 'black',         // 边框颜色
-				borderRadius: 10,             // 边框圆角
-				borderWidth: 3,               // 边框宽度
-				shadow: true,                 // 是否显示阴影
-				animation: true,               // 是否启用动画效果
-				style: {                      // 文字内容相关样式
-					color: "#ff0000",
-					fontSize: "12px",
-					fontWeight: "blod",
-					fontFamily: "Courir new"
-				}
+				enabled: true
 			},
 			plotOptions: {
 				line: { // 显示数据标签，改为对应类型的
 					dataLabels: {
-						enabled: true, // 开启数据标签,
-						style: {// 数据标签颜色
-							color: '#595959'
-						}
+						enabled: true // 开启数据标签,
 					},
 					// 关闭鼠标跟踪，对应的提示框、点击事件会失效
-					enableMouseTracking: true
+					// enableMouseTracking: true
 				}
 			},
 			series: [{
