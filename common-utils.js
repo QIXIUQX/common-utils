@@ -336,13 +336,6 @@ commonUtils.checkArrayExistValue = function (array, num) {
 }
 
 /**
- *
- * @param value
- * @param fixed
- * @returns {string} 拼接好的百分比
- */
-
-/**
  * 获取百分比
  * @param {Number} value 需要转变的之
  * @param {Number} fixed 保留几位小数  默认保留2位
@@ -351,9 +344,8 @@ commonUtils.checkArrayExistValue = function (array, num) {
  */
 commonUtils.getPercentage = function (value, fixed, percentSign) {
 	fixed = fixed ? fixed : 2
-	return (value * 100).toFixed(fixed) + percentSign ? "%" : ""
+	return (value * 100).toFixed(fixed) + (percentSign ? "%" : "")
 }
-console.log(commonUtils.getPercentage(0.9456, 2, true));
 
 
 //urlUtils
@@ -786,4 +778,10 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 		throw new Error("添加失败，未传入HTMLDOMElement")
 	}
 	$(HTMLDOMElement).html('<div style="padding: 5px 20px;font-size: 16px;color: #999;text-align: center;user-select: none;	-moz-user-select: none;	-webkit-user-select: none;">' + msg + '</div>')
+}
+
+
+function variableValueExists(value, returnDoesNotExist) {
+	returnDoesNotExist = returnDoesNotExist || "暂无"
+	return value ? value : returnDoesNotExist
 }
