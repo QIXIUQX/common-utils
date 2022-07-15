@@ -347,6 +347,13 @@ commonUtils.getPercentage = function (value, fixed, percentSign) {
 	return (value * 100).toFixed(fixed) + (percentSign ? "%" : "")
 }
 
+/**
+ * 是否是移动端设备
+ * @returns {RegExpMatchArray}  匹配结果。如果是移动端则返回的正则匹配结果数组中，会包含对应设备的值，如果没有则表示是pc端
+ */
+commonUtils.isMobile = function () {
+	return navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+}
 
 //urlUtils
 
