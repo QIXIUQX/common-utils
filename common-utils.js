@@ -33,27 +33,15 @@ function getLastMonth(dateTime) {
 
 
 /**
- * 字符串截取
- * @param {String} str 需要截取的字符串，传入的将会自动转换为String。
- * @param {Number} startNum 开始位置
- * @param {Number} endNum 结束位置
- * @returns {string} 返回截取的字符串
+ * 字符串切割
+ * @param value{String} 需要切割的字符串
+ * @param start{Number} 开始位置
+ * @param end{Number} 需要切几位
+ * @returns {string}  分割后的字符串
  */
-commonUtils.subStr = function (str, startNum, endNum) {
-	return ("" + str + "").toString().substring(startNum, endNum)
+commonUtils.strSlice = function (value, start, end) {
+	return value.toString().slice(start, end)
 }
-
-
-/**
- * 字符串切割（针对202202这样日期的格式字符串进行切割，返回：2022-02 字符串）
- * @param {string} value 需要切割的字符串
- * @returns {string} 切割并且拼接好的字符串
- */
-commonUtils.strSlice = function (value) {
-	return commonUtils.subStr(value, 0, 4) + '-' + commonUtils.subStr(value, 4, 6);
-}
-console.log(commonUtils.strSlice("192005"))
-
 
 /**
  * 不足10的话前面补0
@@ -317,6 +305,17 @@ commonUtils.capitalizeEveryWord = function (str) {
  */
 commonUtils.checkVariableNull = function (val) {
 	return val === undefined || val === null;
+}
+
+/**
+ * 字符串截取
+ * @param {String} str 需要截取的字符串，传入的将会自动转换为String。
+ * @param {Number} startNum 开始位置
+ * @param {Number} length 结束位置
+ * @returns {string} 返回截取的子发出
+ */
+commonUtils.subStr = function (str, startNum, length) {
+	return ("" + str + "").toString().substr(startNum, length)
 }
 
 /**
