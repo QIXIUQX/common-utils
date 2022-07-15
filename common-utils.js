@@ -788,6 +788,12 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 }
 
 
+/**
+ * 判断变量的值是否存在，如果存在则返回对应的值，如果不存在则返回暂无或者由调用者指定的值
+ * @param value 需要被检测的变量
+ * @param returnDoesNotExist 变量不存在时候返回的值
+ * @returns {*|string}
+ */
 function variableValueExists(value, returnDoesNotExist) {
 	returnDoesNotExist = returnDoesNotExist || "暂无"
 	return value ? value : returnDoesNotExist
