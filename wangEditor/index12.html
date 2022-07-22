@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>index</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.0/dist/jquery.min.js"></script>
+	
+	<link href="dist/wangEditor5.1.11.css" rel="stylesheet">
+	<script src="dist/wangEditor5.1.11.js"></script>
+	
+	<style>
+		#editor—wrapper1,#editor—wrapper2 {
+			border: 1px solid #ccc;
+			z-index: 100; /* 按需定义 */
+		}
+		
+		#toolbar-container {
+			border-bottom: 1px solid #ccc;
+		}
+		
+		#editor-container {
+			height: 300px;
+		}
+	</style>
+
+
+</head>
+<body>
+<div id="editor—wrapper1">
+	<div id="editor-toolbar-1" style="border-bottom: 1px solid #ccc;"></div>
+	<div id="editor-text-area-1" style="height: 300px;"></div>
+</div>
+<div id="editor—wrapper2">
+	<div id="editor-toolbar-12" style="border-bottom: 1px solid #ccc;"></div>
+	<div id="editor-text-area-12" style="height: 300px;"></div>
+</div>
+<div class="box"></div>
+<div class="box1"></div>
+<button>123123123</button>
+
+<script>
+	$("button").click(function () {
+		$(".box").html(data.getHtml())
+		$(".box1").html(test1.getHtml())
+	})
+	var data = createEditor({
+		editorEl: '#editor-text-area-1',
+		html: "<p>bbbbb</p>>",
+		toolbarOpts: {
+			toolbarEl: "#editor-toolbar-1",
+			excludeKeys: []
+		}
+	})
+	
+	var test1 = createEditor(
+			{
+				editorEl: '#editor-text-area-12',
+				html: "<p>aaaaaaa</p>>",
+				toolbarOpts: {
+					toolbarEl: '#editor-toolbar-12',
+					excludeKeys: []
+				}
+			}
+	)
+	/**
+	 * 创建富文本编辑器
+	 * @param data
+	 * @returns {{normalizeNode: function(*): void, onChange: function(), apply: function(*): void, insertBreak: function(): void, removeMark: function(*): void, addMark: function(*, *): void, insertNode: function(*): void, insertFragment: function(*): void, marks: null, insertText: function(*): void, deleteBackward: function(*): void, operations: [], selection: null, isVoid: function(): boolean, deleteForward: function(*): void, children: [], isInline: function(): boolean, getFragment: function(): (*|[]), deleteFragment: function(*): void}|*}
+	 */
+	function createEditor(opts) {
+		// var wangEditor = window.wangEditor
+		// 第一个编辑器
+		var wangEditorObj = wangEditor.createEditor({
+			selector: opts.editorEl,
+			html: opts.html || '<p>editor1</p><p><br></p>'
+		})
+		setToolbar(wangEditorObj, opts.toolbarOpts)
+		
+		/**
+		 * 生成工具栏
+		 * @param opts
+		 */
+		function setToolbar(wangEditorInstance, opts) {
+			wangEditor.createToolbar({
+				editor: wangEditorInstance,
+				selector: opts.toolbarEl,
+				config: {
+					//排除项
+					excludeKeys: [
+						'group-image', // 排除菜单组，写菜单组 key 的值即可
+						'group-video', // 排除菜单组，写菜单组 key 的值即可
+						"fullScreen", // 排除菜单组，写菜单组 key 的值即可
+						"todo", // 排除菜单组，写菜单组 key 的值即可
+						"codeBlock", // 排除菜单组，写菜单组 key 的值即可
+						"emotion" // 排除菜单组，写菜单组 key 的值即可
+					]
+				}
+			})
+		}
+		
+		return wangEditorObj
+	}
+</script>
+</body>
+</html>
