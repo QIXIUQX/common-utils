@@ -1,17 +1,15 @@
-let errorFn = null
-
 /** 时间日期操作相关方法 */
-let dateUtils = {}
+var dateUtils = {}
 /*** url操作相关方法 */
-let urlUtils = {}
+var urlUtils = {}
 /** 本地存储操作相关方法 */
-let storageUtils = {}
+var storageUtils = {}
 /** 倒计时操作相关方法 */
-let countDownUtils = {}
+var countDownUtils = {}
 /** 公共方法 */
-let commonUtils = {}
+var commonUtils = {}
 //dom 操作
-let domUtils = {}
+var domUtils = {}
 
 
 /**========================内部工具类 不提供给外部使用==============================*/
@@ -31,6 +29,16 @@ function getLastMonth(dateTime) {
 
 /**======================================================*/
 
+/**
+ * 判断变量的值是否存在，如果存在则返回对应的值，如果不存在则返回暂无或者由调用者指定的值
+ * @param value 需要被检测的变量
+ * @param returnDoesNotExist 变量不存在时候返回的值
+ * @returns {*|string}
+ */
+commonUtils.variableValueExists = function (value, returnDoesNotExist) {
+	returnDoesNotExist = returnDoesNotExist || "暂无"
+	return value ? value : returnDoesNotExist
+}
 
 /**
  * 字符串切割
@@ -58,9 +66,9 @@ commonUtils.fillWith0 = function (number) {
  * @returns {Array}   返回一个新的数组
  */
 commonUtils.messArray = function (array) {
-	let _after = [];
-	let index = 0
-	for (let i = array.length - 1; i >= 0; i--) {
+	var _after = [];
+	var index = 0
+	for (var i = array.length - 1; i >= 0; i--) {
 		index = commonUtils.randomNum(0, i);
 		_after[_after.length] = array.splice(index, 1)[0];
 	}
@@ -86,16 +94,16 @@ commonUtils.randomNum = function (minNum, maxNum) {
  */
 commonUtils.debounce = function (fn, delay, trigger) {
 	if (!trigger) trigger = false
-	let t = null;
-	let res = null;
-	let debounced = function () {
-		let _self = this;
-		let args = arguments;
+	var t = null;
+	var res = null;
+	var debounced = function () {
+		var _self = this;
+		var args = arguments;
 		if (t) {
 			clearTimeout(t);
 		}
 		if (trigger) {
-			let exec = !t;
+			var exec = !t;
 
 			t = setTimeout(function () {
 				t = null;
@@ -126,13 +134,13 @@ commonUtils.debounce = function (fn, delay, trigger) {
  */
 commonUtils.throttle = function (fn, delay) {
 	if (!delay) delay = 500
-	let timer = null;
-	let beginTime = new Date().getTime();
+	var timer = null;
+	var beginTime = new Date().getTime();
 	return function () {
-		let _self = this;
-		let args = arguments;
+		var _self = this;
+		var args = arguments;
 
-		let currentTime = new Date().getTime();
+		var currentTime = new Date().getTime();
 		clearTimeout(timer);
 		timer = null;
 		if (currentTime - beginTime >= delay) {
@@ -213,9 +221,9 @@ commonUtils.handleDisableBackOrForward = function () {
  */
 commonUtils.uniqueByObject = function (array, propertiesName) {
 	if (!propertiesName) throw new Error("必须传入属性名称已完成去重")
-	let result = [];
-	let obj = {};
-	for (let i = 0; i < array.length; i++) {
+	var result = [];
+	var obj = {};
+	for (var i = 0; i < array.length; i++) {
 		if (!obj[array[i][propertiesName]]) {
 			result[result.length] = array[i];
 			obj[array[i][propertiesName]] = true;
@@ -230,8 +238,8 @@ commonUtils.uniqueByObject = function (array, propertiesName) {
  * @returns {Array} 去重后的数组
  */
 commonUtils.unique = function (array) {
-	let _arr1 = [];
-	for (let i = 0, len = array.length; i < len; i++) {
+	var _arr1 = [];
+	for (var i = 0, len = array.length; i < len; i++) {
 		if (_arr1.indexOf(array[i]) === -1) {
 			_arr1[_arr1.length] = array[i];
 		}
@@ -245,7 +253,7 @@ commonUtils.unique = function (array) {
  * @param {Function} callback 复制后的回调函数
  */
 commonUtils.copyShane = function (shareContent, callback) {
-	let _input = document.createElement("input"); // 直接构建input
+	var _input = document.createElement("input"); // 直接构建input
 	_input.value = shareContent; // 设置内容
 	document.body.appendChild(_input); // 添加临时实例
 	_input.select(); // 选择实例内容
@@ -275,9 +283,9 @@ commonUtils.isEmptyObject = function (obj) {
  */
 commonUtils.randomNumNoRepeat = function (length, minNum, maxNum) {
 	if ((maxNum - minNum) + 1 < length) throw new Error("随机数长度必须小于最大随机数减最小随机数")
-	let _tempArray = []
-	for (let i = 0; i < length; i++) {
-		let randomNum = commonUtils.randomNum(minNum, maxNum)
+	var _tempArray = []
+	for (var i = 0; i < length; i++) {
+		var randomNum = commonUtils.randomNum(minNum, maxNum)
 		if (_tempArray.indexOf(randomNum) !== -1) {
 			i--
 		} else {
@@ -326,7 +334,7 @@ commonUtils.subStr = function (str, startNum, length) {
  * @returns {Array}  经过处理之后的数组
  */
 commonUtils.checkArrayExistValue = function (array, num) {
-	let _index = array.indexOf(num)
+	var _index = array.indexOf(num)
 	if (_index !== -1) {
 		array.splice(_index, 1)
 	} else {
@@ -363,8 +371,8 @@ commonUtils.isMobile = function () {
  * @returns {string|null} 获取到的值， 如果是空返回null
  */
 urlUtils.getUrlParam = function (name) {
-	let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-	let r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
 	if (r != null) return unescape(r[2]);
 	return null; //返回参数值
 }
@@ -382,14 +390,14 @@ urlUtils.currentUrl = function () {
 
 /**
  * 将指定的时间格式化为时间对象，并以对象的形式放回出来，注意：星期日为0
- * @param {String|Number|Date} time time需要转换为对象的时间，支持时间日期字符串或时间戳
+ * @param {String|Number|Date|any} time time需要转换为对象的时间，支持时间日期字符串或时间戳
  * @param {Boolean} fill0 是否需要补0  false 不补0 true 补0
  * @returns {Object} 返回值类型一个包含日期时间星期的对象
  */
 dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0) {
 	if (!fill0) fill0 = false
-	let _timeStamp = new Date(time)
-	let _timeStampObj = {
+	var _timeStamp = new Date(time)
+	var _timeStampObj = {
 		"WEEK_MAP": ["日", "一", "二", "三", "四", "五", "六"],
 		"QUARTER_MAP": ["一", "二", "三", "四"],
 		"year": _timeStamp.getFullYear(),
@@ -421,7 +429,7 @@ dateUtils.formatTimeStrOrTimeStampToObject = function (time, fill0) {
  * @returns {string|{}}
  */
 countDownUtils.handleCountDown = function (second, resultType, fill0) {
-	let _timerObj = {};
+	var _timerObj = {};
 	if (second >= 0) {
 		_timerObj.minutes = Math.floor(second / 60);
 		_timerObj.seconds = Math.floor(second % 60);
@@ -443,8 +451,8 @@ countDownUtils.handleCountDown = function (second, resultType, fill0) {
  *     type：返回类型（0：开始时间大于结束时间，1：返回时间大于开始时间，并且小于结束时间，2：返回时间要在时间段内，3：符合所有条件）
  *     day ：返回的天数 （在type属于3 的时候这里才有大于等于0的值）
  * }
- * @param {String:Number|Date}beginTime
- * @param {String:Number|Date} endTime
+ * @param {String|Number|Date|any}beginTime
+ * @param {String|Number|Date|any} endTime
  * @param {Number} minNum
  * @param {Number} maxNum
  * @returns {Object}
@@ -452,9 +460,9 @@ countDownUtils.handleCountDown = function (second, resultType, fill0) {
 dateUtils.selectDateRange = function (beginTime, endTime, minNum, maxNum) {
 	if (!minNum) minNum = 0
 	if (!maxNum) maxNum = 0
-	let dateSpan, calcData;
-	let begin = new Date(beginTime).getTime();
-	let end = new Date(endTime).getTime();
+	var dateSpan, calcData;
+	var begin = new Date(beginTime).getTime();
+	var end = new Date(endTime).getTime();
 	if (end - begin < 0) {
 		return {
 			message: "开始时间大于结束时间",
@@ -499,8 +507,8 @@ dateUtils.selectDateRange = function (beginTime, endTime, minNum, maxNum) {
 dateUtils.timeCalculation = function (timeStamp, postponeTime, fill0) {
 	if (!postponeTime) postponeTime = 0
 	if (!fill0) fill0 = true
-	let date = new Date(timeStamp).getTime();
-	let _afterDate = date + (1000 * 60 * 60 * 24 * postponeTime)
+	var date = new Date(timeStamp).getTime();
+	var _afterDate = date + (1000 * 60 * 60 * 24 * postponeTime)
 	return dateUtils.formatTimeStrOrTimeStampToObject(_afterDate, fill0)
 }
 
@@ -533,8 +541,8 @@ dateUtils.getCurrentDate = function (formatStr) {
  * @returns {string} 格式化后的字符串
  */
 dateUtils.dateFormat = function (timeStamp, formatStr) {
-	let item
-	const DATE_KEY_MAP = [
+	var item
+	var DATE_KEY_MAP = [
 		{
 			reg: /yyyy/,
 			date: "year"
@@ -564,13 +572,13 @@ dateUtils.dateFormat = function (timeStamp, formatStr) {
 			date: "milliSeconds"
 		}
 	]
-	let _date = dateUtils.formatTimeStrOrTimeStampToObject(timeStamp, true)
+	var _date = dateUtils.formatTimeStrOrTimeStampToObject(timeStamp, true)
 
 	if (!formatStr) {
 		formatStr = "yyyy-MM-dd hh:mm:ss"
 	}
 
-	for (let i = 0; i < DATE_KEY_MAP.length; i++) {
+	for (var i = 0; i < DATE_KEY_MAP.length; i++) {
 		item = DATE_KEY_MAP[i]
 		formatStr = formatStr.replace(item.reg, _date[item.date] + '')
 	}
@@ -597,14 +605,14 @@ dateUtils.getCurrentTimeStamp = function () {
  * @param formatStr 存储时候按照指定格式进行字符串格式化
  */
 dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, formatStr) {
-	let _dateList = []
-	let _dateTimeObj = dateUtils.formatTimeStrOrTimeStampToObject(new Date(startMonth), true)
+	var _dateList = []
+	var _dateTimeObj = dateUtils.formatTimeStrOrTimeStampToObject(new Date(startMonth), true)
 	formatStr = formatStr ? formatStr : "yyyy年MM月"
 	if (!containsCurrentMonth) {
 		_dateTimeObj = getLastMonth(_dateTimeObj)
 	}
-	for (let i = 0; i < length; i++) {
-		let str = _dateTimeObj.year + "-" + _dateTimeObj.month + "-" + _dateTimeObj.day + " " + _dateTimeObj.hour + ":" + _dateTimeObj.minutes + ":" + _dateTimeObj.seconds
+	for (var i = 0; i < length; i++) {
+		var str = _dateTimeObj.year + "-" + _dateTimeObj.month + "-" + _dateTimeObj.day + " " + _dateTimeObj.hour + ":" + _dateTimeObj.minutes + ":" + _dateTimeObj.seconds
 		_dateList[_dateList.length] = dateUtils.dateFormat(str, formatStr)
 		_dateTimeObj = getLastMonth(_dateTimeObj)
 	}
@@ -618,14 +626,14 @@ dateUtils.getMonthList = function (startMonth, length, containsCurrentMonth, for
  * @returns {string|*} 格式化之后的字符串
  */
 dateUtils.getMonthLastDay = function (dateTime, formatStr) {
-	let _dateTimeStr
-	let date
-	let day
+	var _dateTimeStr
+	var date
+	var day
 	formatStr = formatStr ? formatStr : "yyyy-MM-dd hh:mm:ss"
 	_dateTimeStr = dateUtils.dateFormat(new Date(dateTime), "yyyy-MM-dd hh:mm:ss")
 	date = dateUtils.formatTimeStrOrTimeStampToObject(_dateTimeStr, true)
 	day = new Date(date.year, date.month, 0).getDate()
-	let tempDateTimeStr = "" + date.year + "-" + date.month + "-" + day + " " + date.hour + ":" + date.minutes + ":" + date.seconds
+	var tempDateTimeStr = "" + date.year + "-" + date.month + "-" + day + " " + date.hour + ":" + date.minutes + ":" + date.seconds
 	return dateUtils.dateFormat(new Date(tempDateTimeStr), formatStr)
 }
 
@@ -637,8 +645,8 @@ dateUtils.getMonthLastDay = function (dateTime, formatStr) {
  */
 dateUtils.getMonthFirstDay = function (dateTime, formatStr) {
 	formatStr = formatStr ? formatStr : "yyyy-MM-dd hh:mm:ss"
-	let _date = new Date(dateTime)
-	let dateTimeStr = ""
+	var _date = new Date(dateTime)
+	var dateTimeStr
 	_date.setDate(1)
 	dateTimeStr = dateUtils.dateFormat(_date, formatStr)
 	return dateTimeStr
@@ -788,16 +796,6 @@ domUtils.appendNoDataEl = function (HTMLDOMElement, msg) {
 }
 
 
-/**
- * 判断变量的值是否存在，如果存在则返回对应的值，如果不存在则返回暂无或者由调用者指定的值
- * @param value 需要被检测的变量
- * @param returnDoesNotExist 变量不存在时候返回的值
- * @returns {*|string}
- */
-function variableValueExists(value, returnDoesNotExist) {
-	returnDoesNotExist = returnDoesNotExist || "暂无"
-	return value ? value : returnDoesNotExist
-}
 
 /**
  * 页面刷新时候，将对应的值保存到本地存储中，该方法只能被调用一次
