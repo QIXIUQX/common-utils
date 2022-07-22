@@ -798,3 +798,16 @@ function variableValueExists(value, returnDoesNotExist) {
 	returnDoesNotExist = returnDoesNotExist || "暂无"
 	return value ? value : returnDoesNotExist
 }
+
+/**
+ * 页面刷新时候，将对应的值保存到本地存储中，该方法只能被调用一次
+ * @param key 存储时候的key
+ * @param values 存储时候的values
+ */
+domUtils.pageRefreshEvent = function (key, values) {
+	window.addEventListener('beforeunload', _saveStorage);
+
+	function _saveStorage() {
+		storageUtils.saveStorage(key, values)
+	}
+}
